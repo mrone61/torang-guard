@@ -1,6 +1,6 @@
 from flask import Flask, render_template, request, jsonify
 import re
-from urllib.parse import urlparse
+from urllib.parse import urlparse 
 import difflib
 
 try:
