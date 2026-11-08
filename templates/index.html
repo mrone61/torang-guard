@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="theme-color" content="#050810">
+  <title>TORANG GUARD</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+
+  <header class="topbar">
+    <span>● TORANG GUARD v2.1</span>
+    <span class="topbar-center">MODE: <b>CYBER DEFENSE</b></span>
+    <span>📍 PAPUA - INDONESIA</span>
+  </header>
+
+  <main class="wrap">
+
+    <!-- HERO - RATA TENGAH -->
+    <section class="hero">
+      <div class="logo">🦅🛡️🎓</div>
+      <h1>TORANG GUARD <span>LINK CHECKER SYSTEM</span></h1>
+      <p class="slogan">Dari Papua, Torang Jaga Indonesia</p>
+      <p class="sub">Sa Bisa, Ko Bisa, Torang Bisa!</p>
+
+      <div class="stats">
+        <div class="stat"><b>150+</b><small>DOMAIN ASLI</small></div>
+        <div class="stat"><b>100%</b><small>CEK REALTIME</small></div>
+        <div class="stat"><b>24/7</b><small>SIAGA</small></div>
+      </div>
+    </section>
+
+    <!-- MONITORING CARD - RATA TENGAH -->
+    <section class="cyber-card">
+      <h3>🛰️ TORANG GUARD - MONITORING AKTIF</h3>
+      <div class="scanline"></div>
+      <div class="mini-grid">
+        <div class="mini"><b>🎓 .ac.id</b><span>Kampus + SIAKAD + IN8</span></div>
+        <div class="mini"><b>🏛️ .go.id</b><span>Pemerintah Resmi</span></div>
+        <div class="mini"><b>🏦 BANK</b><span>BRI, BCA, Mandiri, DANA</span></div>
+        <div class="mini"><b>⚠️ PHISHING</b><span>Typosquatting Detect</span></div>
+      </div>
+      <p class="cyber-desc">System otomatis cek kemiripan domain, TLD palsu, dan kata penipu. Support Laptop, Komputer, Tablet & HP.</p>
+    </section>
+
+    <!-- CEK LINK - RATA TENGAH -->
+    <section class="box">
+      <h3>🔗 Cek Link</h3>
+      <p class="hint">Paste link dari WA / SMS / Email yang mencurigakan, lalu tekan CEK.</p>
+      <div class="input-wrap">
+        <input id="url" placeholder="url" autocomplete="off" inputmode="url">
+        <button onclick="cek()">🔍 CEK LINK SEKARANG</button>
+      </div>
+      <div id="hasil"></div>
+    </section>
+
+    <footer class="footer">
+      <b>Powered by MR ONE</b>
+    </footer>
+
+  </main>
+
+  <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+        </html>
