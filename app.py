@@ -1,4 +1,4 @@
-from flask import Flask, render_template_string, request, jsonify
+from flask import Flask, render_template, request, jsonify
 import re
 from urllib.parse import urlparse
 import difflib
@@ -6,15 +6,16 @@ import difflib
 app = Flask(__name__)
 
 # ===== TORANG GUARD v2.1 - Campus Edition - Powered by MR ONE =====
+# OTAK NYA DISINI, JANGAN DIUBAH KECUALI MAU TAMBAH DOMAIN
 
 LEGIT_DOMAINS = {
-    "ustj.ac.id": "Universitas Sains dan Teknologi Jayapura (USTJ) - Kampus Kita!",
-    "siakad.ustj.ac.id": "SIAKAD USTJ - Portal Akademik Resmi USTJ",
-    "portal.ustj.ac.id": "Portal USTJ",
-    "pmb.ustj.ac.id": "PMB USTJ - Penerimaan Mahasiswa Baru",
-    "elearning.ustj.ac.id": "E-Learning USTJ",
+    "https://ustj.ac.id": "Universitas Sains dan Teknologi Jayapura (USTJ) - Kampus Kita!",
+    "https://siakad.ustj.ac.id": "SIAKAD USTJ - Portal Akademik Resmi USTJ",
+    "https://portal.ustj.ac.id": "Portal USTJ",
+    "https://pmb.ustj.ac.id": "PMB USTJ - Penerimaan Mahasiswa Baru",
+    "https://elearning.ustj.ac.id": "E-Learning USTJ",
     "in8.ustj.ac.id": "IN8 USTJ - Portal Akademik USTJ",
-    "simak.ustj.ac.id": "SIMAK USTJ",
+    "https://simak.ustj.ac.id": "SIMAK USTJ",
     "uncen.ac.id": "Universitas Cenderawasih (UNCEN) Jayapura",
     "siakad.uncen.ac.id": "SIAKAD UNCEN",
     "unipa.ac.id": "Universitas Papua (UNIPA) Manokwari",
@@ -84,59 +85,6 @@ LEGIT_DOMAINS = {
 SUSPICIOUS_TLDS = ['.xyz', '.top', '.click', '.buzz', '.online', '.site', '.fun', '.live', '.cc', '.tk']
 SUSPICIOUS_WORDS = ['login', 'verify', 'verifikasi', 'promo', 'hadiah', 'gratis', 'bonus', 'akun', 'suspended', 'blocked', 'update', 'secure', 'confirm', 'beasiswa', 'bantuan', 'klaim', 'undian', 'ukt', 'pembayaran']
 
-HTML = """
-<!DOCTYPE html>
-<html><head><title>TORANG GUARD</title>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<style>
-body{background:#0a0a0a;color:#eee;font-family:Arial,sans-serif;padding:15px;max-width:750px;margin:auto}
-.logo{text-align:center;font-size:60px}
-h1{text-align:center;color:#ffcc00;margin:5px;font-size:32px}
-.slogan{text-align:center;color:#00ff88;font-weight:bold}
-.sub{text-align:center;color:#aaa;font-size:13px;line-height:1.6}
-.box{border:1px solid #333;padding:18px;border-radius:14px;margin:15px 0;background:#111}
-input{width:100%;padding:14px;background:#222;color:#fff;border:1px solid #555;border-radius:8px;font-size:15px;box-sizing:border-box}
-button{background:#ffcc00;color:#000;padding:14px;border:none;border-radius:8px;font-weight:bold;cursor:pointer;width:100%;margin-top:10px;font-size:16px}
-.aman{background:#003300;border:1px solid #00ff88;padding:15px;border-radius:10px;margin-top:15px}
-.bahaya{background:#330000;border:1px solid #ff4444;padding:15px;border-radius:10px;margin-top:15px}
-.waspada{background:#332200;border:1px solid #ffcc00;padding:15px;border-radius:10px;margin-top:15px}
-.score{font-size:42px;font-weight:bold;text-align:center}
-td{padding:8px;border-bottom:1px solid #333;font-size:14px}
-.footer{text-align:center;margin-top:30px;color:#888;font-size:12px;border-top:1px solid #333;padding-top:18px;line-height:1.9}
-.badge{display:inline-block;padding:3px 8px;border-radius:10px;font-size:11px;font-weight:bold;background:#222;color:#ffcc00;margin:2px}
-</style></head>
-<body>
-<div class="logo">🦅🛡️🎓</div>
-<h1>TORANG GUARD</h1>
-<p class="slogan">Dari Papua, Torang Jaga Indonesia</p>
-<p class="sub"><br>Sa Bisa, Ko Bisa, Torang Bisa!</p>
-<div class="box">
-<h3>🔗 Cek Link</h3>
-<input id="url" placeholder="url">
-<button onclick="cek()">🔍 CEK LINK SEKARANG</button>
-<div id="hasil"></div>
-</div>
-<div class="footer">
-<b style="color:#ffcc00;font-size:16px;">Powered by MR ONE</b><br>
-</div>
-<script>
-async function cek(){
-  let url = document.getElementById('url').value;
-  if(!url){ alert('Masukin dulu linknya bro!'); return; }
-  document.getElementById('hasil').innerHTML = '<p style="text-align:center">Torang Guard lagi ngecek database kampus... ⏳</p>';
-  let r = await fetch('/api/check', {method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({url:url})});
-  let d = await r.json();
-  let cls = d.score >= 70 ? 'bahaya' : d.score >= 40 ? 'waspada' : 'aman';
-  let label = d.score >= 70 ? '⛔ BAHAYA - JANGAN DI KLIK!' : d.score >= 40 ? '⚠️ WASPADA - HATI-HATI!' : '✅ AMAN - Kemungkinan Asli';
-  let h = `<div class="${cls}"><div class="score">${d.score}/100</div><p style="text-align:center;font-weight:bold;font-size:18px">${label}</p><p style="text-align:center">Domain: <b>${d.domain}</b> | Kategori: <b>${d.category}</b></p><table>`;
-  d.reasons.forEach(x=>{ h+=`<tr><td>${x}</td></tr>` });
-  h+=`</table><p style="margin-top:12px"><b>Kesimpulan Torang Guard:</b> ${d.verdict}</p></div>`;
-  document.getElementById('hasil').innerHTML = h;
-}
-</script>
-</body></html>
-"""
-
 def check_url(raw_url):
     url = raw_url.strip()
     if not url.startswith("http"):
@@ -159,7 +107,7 @@ def check_url(raw_url):
         category = "Portal Akademik SIAKAD"
     elif "in8" in domain:
         category = "Portal Akademik IN8"
-    if re.match(r'^\\d+\\.\\d+\\.\\d+\\.\\d+$', domain):
+    if re.match(r'^\d+\.\d+\.\d+\.\d+$', domain):
         score += 40; reasons.append("⛔ Pakai IP Address langsung.")
     for tld in SUSPICIOUS_TLDS:
         if domain.endswith(tld):
@@ -225,7 +173,7 @@ def check_url(raw_url):
 
 @app.route('/')
 def index():
-    return render_template_string(HTML)
+    return render_template('index.html')
 
 @app.route('/api/check', methods=['POST'])
 def api_check():
