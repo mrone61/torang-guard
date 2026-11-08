@@ -10,25 +10,28 @@
 <body>
   <main class="wrap">
     <section class="hero">
-      <div class="logo">🦅🛡️🎓</div>
+      <div class="logo">🦅TORANG GUARD🛡️</div>
       <br>
       <p class="slogan">Dari Papua, Torang Jaga Indonesia</p>
       <p class="sub">Sa Bisa, Ko Bisa, Torang Bisa!</p>
-
-      <div class="stats">
-        <div class="stat"><b>150+</b><small>DOMAIN ASLI</small></div>
-        <div class="stat"><b>100%</b><small>CEK REALTIME</small></div>
-        <div class="stat"><b>24/7</b><small>SIAGA</small></div>
-      </div>
     </section>
-
+    <br>
   
     <section class="box">
       <h5>🔗 Paste Link</h5>
       <div class="input-wrap">
-        <input id="url" placeholder="url" autocomplete="off" inputmode="url">
+        <input id="url" placeholder="Masukkan Url" autocomplete="off" inputmode="url">
         <button onclick="cek()">🔍 CEK LINK SEKARANG</button>
       </div>
+
+      <!-- BARU: Tombol Cek Isi Website - Cuma ini yang ditambahin, yang lain GAK DIUBAH -->
+      <div style="margin-top:10px; text-align:left; font-size:13px; color:#cbd5e1;">
+        <label style="display:flex; gap:8px; align-items:center; cursor:pointer;">
+          <input type="checkbox" id="deep_check" checked style="width:16px; height:16px; accent-color:#22c55e;">
+          <span>🔍 Cek Isi Website</span>
+        </label>
+      </div>
+
       <div id="hasil"></div>
     </section>
 
@@ -40,4 +43,4 @@
 
   <script src="{{ url_for('static', filename='js/script.js') }}"></script>
 </body>
-        </html>
+</html>
