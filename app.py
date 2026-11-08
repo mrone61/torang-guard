@@ -86,7 +86,7 @@ SUSPICIOUS_WORDS = ['login', 'verify', 'verifikasi', 'promo', 'hadiah', 'gratis'
 
 HTML = """
 <!DOCTYPE html>
-<html><head><title>TORANG GUARD v2.1 - Campus Edition</title>
+<html><head><title>TORANG GUARD</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <style>
 body{background:#0a0a0a;color:#eee;font-family:Arial,sans-serif;padding:15px;max-width:750px;margin:auto}
@@ -109,42 +109,15 @@ td{padding:8px;border-bottom:1px solid #333;font-size:14px}
 <div class="logo">🦅🛡️🎓</div>
 <h1>TORANG GUARD</h1>
 <p class="slogan">Dari Papua, Torang Jaga Indonesia</p>
-<p class="sub">v2.1 - Campus Edition | 150+ Kampus .ac.id + SIAKAD + Portal IN8<br>USTJ, UNCEN, UNHAS, UNM, UI, UGM, ITB, ITS, dll<br>Sa Bisa, Ko Bisa, Torang Bisa!</p>
+<p class="sub"><br>Sa Bisa, Ko Bisa, Torang Bisa!</p>
 <div class="box">
-<h3>🔗 Cek Link Kampus / SIAKAD / Bank</h3>
-<input id="url" placeholder="Contoh: ustj.ac.id atau siakad.ustj.ac.id atau ustj-ac.id/login">
+<h3>🔗 Cek Link</h3>
+<input id="url" placeholder="url">
 <button onclick="cek()">🔍 CEK LINK SEKARANG</button>
 <div id="hasil"></div>
 </div>
-<div class="box">
-<h3>🎓 Kampus Yang Sudah Terdaftar</h3>
-<p style="font-size:13px;line-height:1.8">
-<span class="badge">USTJ: ustj.ac.id, siakad.ustj.ac.id, in8.ustj.ac.id</span><br>
-<span class="badge">PAPUA: UNCEN, UNIPA, UNMUS</span><br>
-<span class="badge">MAKASSAR: UNHAS, UNM, UIN Alauddin, UMI, UNIBOS</span><br>
-<span class="badge">NASIONAL: UI, UGM, ITB, ITS, UNAIR, UNDIP, UNPAD, UB</span><br>
-<span class="badge">PORTAL: siakad.*, simak.*, portal.*, elearning.*, in8.*</span><br><br>
-<b>Aturan SIAKAD:</b> Kalau domainnya <i>siakad.ustj.ac.id</i> (pakai titik), itu ASLI. Kalau <i>siakad-ustj.com</i> (pakai strip) atau <i>ustj.siakad-palsu.com</i>, itu PALSU!
-</p>
-</div>
-<div class="box">
-<h3>🧪 Coba Test Ini Bro:</h3>
-<p style="font-size:14px;line-height:2">
-- <b>ustj.ac.id</b> -> HIJAU (Kampus Kita!)<br>
-- <b>siakad.ustj.ac.id</b> -> HIJAU (SIAKAD Asli)<br>
-- <b>in8.ustj.ac.id</b> -> HIJAU (Portal IN8 Asli)<br>
-- <b>ustj-ac.id/login</b> -> MERAH (Palsu, pake strip)<br>
-- <b>siakad-ustj.xyz</b> -> MERAH (Palsu, TLD aneh)<br>
-- <b>tvri.go.id</b> -> HIJAU (TVRI Asli)<br>
-- <b>tvri-go.id</b> -> MERAH (Palsu)
-</p>
-</div>
 <div class="footer">
 <b style="color:#ffcc00;font-size:16px;">Powered by MR ONE</b><br>
-<b>TORANG GUARD v2.1 - Campus Edition</b><br>
-Website ini dibuat oleh Anak Papua, Mahasiswa USTJ, untuk melindungi masyarakat Indonesia dari penipuan online.<br>
-Dari Papua Untuk Indonesia. Sa Bisa, Ko Bisa, Torang Bisa! 🦅🎓<br>
-⚠️ Hanya untuk edukasi dan pencegahan.
 </div>
 <script>
 async function cek(){
@@ -260,6 +233,6 @@ def api_check():
     return jsonify(check_url(data.get('url','')))
 
 if __name__ == '__main__':
-    print("TORANG GUARD jalan di http://127.0.0.1:5000")
-    print("Powered by MR ONE - USTJ")
+    print("Buka Browser, lalu ketik: http://127.0.0.1:5000")
+    print("Powered by MR ONE")
     app.run(host='127.0.0.1', port=5000, debug=True)
