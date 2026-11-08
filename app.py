@@ -4,18 +4,14 @@ from urllib.parse import urlparse
 import difflib
 
 app = Flask(__name__)
-
-# ===== TORANG GUARD v2.1 - Campus Edition - Powered by MR ONE =====
-# OTAK NYA DISINI, JANGAN DIUBAH KECUALI MAU TAMBAH DOMAIN
-
 LEGIT_DOMAINS = {
-    "https://ustj.ac.id": "Universitas Sains dan Teknologi Jayapura (USTJ) - Kampus Kita!",
-    "https://siakad.ustj.ac.id": "SIAKAD USTJ - Portal Akademik Resmi USTJ",
-    "https://portal.ustj.ac.id": "Portal USTJ",
-    "https://pmb.ustj.ac.id": "PMB USTJ - Penerimaan Mahasiswa Baru",
-    "https://elearning.ustj.ac.id": "E-Learning USTJ",
+    "ustj.ac.id": "Universitas Sains dan Teknologi Jayapura (USTJ) - Kampus Kita!",
+    "siakad.ustj.ac.id": "SIAKAD USTJ - Portal Akademik Resmi USTJ",
+    "portal.ustj.ac.id": "Portal USTJ",
+    "pmb.ustj.ac.id": "PMB USTJ - Penerimaan Mahasiswa Baru",
+    "elearning.ustj.ac.id": "E-Learning USTJ",
     "in8.ustj.ac.id": "IN8 USTJ - Portal Akademik USTJ",
-    "https://simak.ustj.ac.id": "SIMAK USTJ",
+    "simak.ustj.ac.id": "SIMAK USTJ",
     "uncen.ac.id": "Universitas Cenderawasih (UNCEN) Jayapura",
     "siakad.uncen.ac.id": "SIAKAD UNCEN",
     "unipa.ac.id": "Universitas Papua (UNIPA) Manokwari",
@@ -83,7 +79,26 @@ LEGIT_DOMAINS = {
 }
 
 SUSPICIOUS_TLDS = ['.xyz', '.top', '.click', '.buzz', '.online', '.site', '.fun', '.live', '.cc', '.tk']
-SUSPICIOUS_WORDS = ['login', 'verify', 'verifikasi', 'promo', 'hadiah', 'gratis', 'bonus', 'akun', 'suspended', 'blocked', 'update', 'secure', 'confirm', 'beasiswa', 'bantuan', 'klaim', 'undian', 'ukt', 'pembayaran']
+
+# DITAMBAH: gift, saldo, danaid, dll buat nangkep penipu model baru
+SUSPICIOUS_WORDS = ['login', 'verify', 'verifikasi', 'promo', 'hadiah', 'gratis', 'bonus', 'akun', 'suspended', 'blocked', 'update', 'secure', 'confirm', 'beasiswa', 'bantuan', 'klaim', 'undian', 'ukt', 'pembayaran', 'gift', 'saldo', 'danaid', 'danabonus', 'ovobonus', 'gopaybonus', 'saldo-gratis', 'klaim-saldo', 'cek-saldo', 'reward', 'cashback', 'voucher', 'giveaway', 'menang', 'terpilih']
+
+# BARU: Daftar brand yang sering dipalsuin penipu
+BRAND_IMPERSONATION = {
+    'dana': 'dana.id',
+    'ovo': 'ovo.id',
+    'gopay': 'gopay.co.id',
+    'bri': 'bri.co.id',
+    'bca': 'bca.co.id',
+    'mandiri': 'mandiri.co.id',
+    'bni': 'bni.co.id',
+    'shopee': 'shopee.co.id',
+    'tokopedia': 'tokopedia.com',
+    'ustj': 'ustj.ac.id',
+    'siakad': 'siakad.ustj.ac.id',
+    'unhas': 'unhas.ac.id',
+    'uncen': 'uncen.ac.id',
+}
 
 def check_url(raw_url):
     url = raw_url.strip()
@@ -107,6 +122,34 @@ def check_url(raw_url):
         category = "Portal Akademik SIAKAD"
     elif "in8" in domain:
         category = "Portal Akademik IN8"
+
+    # ===== TAMENG BARU 1: BRAND IMPERSONATION =====
+    # Kalau domain ngaku-ngaku brand besar tapi bukan domain aslinya, langsung MERAH
+    # Contoh: danaid-gift.com ngaku DANA, tapi bukan dana.id -> PENIPU!
+    brand_found = None
+    for brand, legit_domain in BRAND_IMPERSONATION.items():
+        if brand in domain:
+            # Cek apakah ini domain asli atau subdomain asli
+            is_legit = False
+            if domain == legit_domain or domain.endswith("." + legit_domain):
+                is_legit = True
+            # Cek juga kalau domain ini terdaftar sebagai legit lain yang mengandung brand itu
+            # Contoh: siakad.ustj.ac.id mengandung ustj, tapi itu legit
+            if domain in LEGIT_DOMAINS:
+                is_legit = True
+            else:
+                for legit in LEGIT_DOMAINS:
+                    if domain.endswith("." + legit) and brand in legit:
+                        is_legit = True
+                        break
+            if not is_legit:
+                brand_found = (brand, legit_domain)
+                break
+    if brand_found:
+        brand, legit_domain = brand_found
+        score += 60
+        reasons.append(f"⛔ NGAKU-NGAKU {brand.upper()}! Domain lu: {domain} ngaku {brand.upper()} tapi domain aslinya cuma {legit_domain}. Ini MODUS PENIPUAN SALDO / HADIAH PALSU!")
+
     if re.match(r'^\d+\.\d+\.\d+\.\d+$', domain):
         score += 40; reasons.append("⛔ Pakai IP Address langsung.")
     for tld in SUSPICIOUS_TLDS:
@@ -115,12 +158,14 @@ def check_url(raw_url):
             break
     found_words = [w for w in SUSPICIOUS_WORDS if w in domain]
     if found_words:
-        score += 25; reasons.append(f"⚠️ Ada kata penipu: {', '.join(found_words)} - Modus beasiswa palsu / UKT palsu sering pakai kata ini.")
+        score += 25; reasons.append(f"⚠️ Ada kata penipu: {', '.join(found_words)} - Modus beasiswa palsu / UKT palsu / saldo gratis sering pakai kata ini.")
     if domain in LEGIT_DOMAINS:
         reasons.append(f"✅ TERDAFTAR di TORANG GUARD sebagai: {LEGIT_DOMAINS[domain]}")
         score = max(0, score - 10)
         if found_words:
             score += 20
+        # Kalau domain legit tapi kena brand impersonation tadi, batalkan pengurangan
+        # Karena domain legit tidak mungkin kena brand impersonation di atas
     else:
         parent_found = None
         for legit in LEGIT_DOMAINS:
