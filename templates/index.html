@@ -11,7 +11,7 @@
   <main class="wrap">
     <section class="hero">
       <div class="logo">🦅TORANG GUARD🛡️</div>
-      <br>
+      
       <p class="slogan">Dari Papua, Torang Jaga Indonesia</p>
       <p class="sub">Sa Bisa, Ko Bisa, Torang Bisa!</p>
     </section>
@@ -24,12 +24,13 @@
         <button onclick="cek()">🔍 CEK LINK SEKARANG</button>
       </div>
 
-      <!-- BARU: Tombol Cek Isi Website - Cuma ini yang ditambahin, yang lain GAK DIUBAH -->
-      <div style="margin-top:10px; text-align:left; font-size:13px; color:#cbd5e1;">
-        <label style="display:flex; gap:8px; align-items:center; cursor:pointer;">
-          <input type="checkbox" id="deep_check" checked style="width:16px; height:16px; accent-color:#22c55e;">
+      <!-- DIRAPIIN RATA KIRI: Checkbox nempel kiri, teks nempel kiri -->
+      <div class="deep-check-wrap">
+        <label class="deep-check-label">
+          <input type="checkbox" id="deep_check" checked>
           <span>🔍 Cek Isi Website</span>
         </label>
+        <p class="deep-check-hint">Buka link-nya, cek ada minta PIN / OTP / Password atau enggak. Kalau dicentang lebih akurat (3-5 detik), kalau gak dicentang lebih cepet.</p>
       </div>
 
       <div id="hasil"></div>
