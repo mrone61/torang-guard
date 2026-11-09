@@ -16,8 +16,12 @@ except:
 
 app = Flask(__name__)
 
-# WHITELIST - Domain sendiri jangan dicek
-SELF_DOMAINS = ["torang-guard.vercel.app", "torang-guard.onrender.com", "127.0.0.1", "localhost"]
+def is_self_domain(domain):
+    try:
+        host = request.host.lower().split(':')[0].replace("www.", "")
+        return domain == host
+    except:
+        return False
 
 LEGIT_DOMAINS = {
     "ustj.ac.id": "Universitas Sains dan Teknologi Jayapura (USTJ)",
@@ -84,7 +88,6 @@ SENSITIVE_INPUTS_STRICT = {
     'pin': 30, 'p1n': 30, 'pin_atm': 30, 'otp': 30, 'kode_otp': 30, 'kode_verifikasi': 25,
     'cvv': 35, 'cvc': 35, 'kk': 20, 'nik': 20, 'ktp': 15,
 }
-# FIX: password dipisah, hanya dihitung kalo type="password", bukan dari kata di teks
 SENSITIVE_INPUTS_LOOSE = {
     'passcode': 25, 'kata_sandi': 20, 'kata-sandi': 20, 'sandi': 15,
     'rekening': 20, 'nomor_rekening': 20, 'kartu_kredit': 25, 'kartu_atm': 25,
@@ -92,7 +95,6 @@ SENSITIVE_INPUTS_LOOSE = {
 
 PANIC_WORDS = ['segera', 'hangus', 'diblokir', 'blokir', 'terblokir', 'suspended', 'akun anda akan', 'segera verifikasi', 'batas waktu', 'kedaluwarsa', 'expire', 'urgent', 'sekarang juga']
 
-# ===== LOGIKA FUZZY MAMDANI 2 INPUT =====
 def fuzz_rendah(x):
     if x <= 50: return 1.0
     if x >= 70: return 0.0
@@ -144,7 +146,6 @@ def fuzzy_typo_score(similarity_persen, ciri_score):
         status = "RENDAH"
     return hasil, status, r, s, t, c_rendah, c_tinggi
 
-# ===== CEK UMUR DOMAIN VIA WHOIS =====
 def check_domain_age(domain):
     if whois is None:
         return None, 0, ""
@@ -166,11 +167,11 @@ def check_domain_age(domain):
         if umur < 0:
             umur = 0
         if umur <= 30:
-            return umur, 30, f"⛔ <b>Domain Baru / Umur Sangat Muda</b><br><b>Domain:</b> {domain}<br><b>Umur:</b> {umur} hari (Dibuat: {created.strftime('%d-%m-%Y')})<br><span style='color:#fca5a5'>Domain ini baru dibuat kurang dari 30 hari. 90% situs phishing menggunakan domain baru agar sulit dilacak dan cepat berganti.</span>"
+            return umur, 30, f"⛔ <b>Domain Baru / Umur Sangat Muda</b><br><b>Domain:</b> {domain}<br><b>Umur:</b> {umur} hari (Dibuat: {created.strftime('%d-%m-%Y')})<br><span style='color:rgb(252,165,165)'>Domain ini baru dibuat kurang dari 30 hari. 90 persen situs phishing menggunakan domain baru agar sulit dilacak dan cepat berganti.</span>"
         elif umur <= 90:
-            return umur, 15, f"⚠️ <b>Domain Relatif Baru</b><br><b>Domain:</b> {domain}<br><b>Umur:</b> {umur} hari (Dibuat: {created.strftime('%d-%m-%Y')})<br><span style='color:#fde68a'>Domain ini masih relatif baru (kurang dari 90 hari). Tetap waspada jika meminta data sensitif.</span>"
+            return umur, 15, f"⚠️ <b>Domain Relatif Baru</b><br><b>Domain:</b> {domain}<br><b>Umur:</b> {umur} hari (Dibuat: {created.strftime('%d-%m-%Y')})<br><span style='color:rgb(253,230,138)'>Domain ini masih relatif baru (kurang dari 90 hari). Tetap waspada jika meminta data sensitif.</span>"
         else:
-            return umur, 0, f"✅ <b>Umur Domain Tua / Terpercaya</b><br><b>Domain:</b> {domain}<br><b>Umur:</b> {umur} hari (Dibuat: {created.strftime('%d-%m-%Y')})<br><span style='color:#bbf7d0'>Domain ini sudah berumur lama, cenderung lebih terpercaya.</span>"
+            return umur, 0, f"✅ <b>Umur Domain Tua / Terpercaya</b><br><b>Domain:</b> {domain}<br><b>Umur:</b> {umur} hari (Dibuat: {created.strftime('%d-%m-%Y')})<br><span style='color:rgb(187,247,208)'>Domain ini sudah berumur lama, cenderung lebih terpercaya.</span>"
     except Exception:
         return None, 0, ""
 
@@ -184,30 +185,27 @@ def check_website_content(url, domain):
         html_clean = re.sub(r'<script.*?</script>', '', html, flags=re.DOTALL)
         html_clean = re.sub(r'<style.*?</style>', '', html_clean, flags=re.DOTALL)
     except requests.exceptions.SSLError:
-        return 20, ["⛔ <b>Sertifikat SSL Tidak Valid / Palsu</b><br><span style='color:#fca5a5'>Sertifikat keamanan situs ini tidak valid. Situs resmi selalu memiliki sertifikat SSL yang valid. Ini indikasi kuat situs penipuan.</span>"], {}
+        return 20, ["⛔ <b>Sertifikat SSL Tidak Valid / Palsu</b><br><span style='color:rgb(252,165,165)'>Sertifikat keamanan situs ini tidak valid. Situs resmi selalu memiliki sertifikat SSL yang valid. Ini indikasi kuat situs penipuan.</span>"], {}
     except Exception as e:
-        return 0, ["ℹ️ <b>Isi Website Tidak Dapat Diakses</b><br><span style='color:#cbd5e1'>Situs tidak dapat dibuka untuk pemeriksaan isi. Kemungkinan situs sudah tidak aktif atau diblokir. Penilaian hanya berdasarkan nama domain.</span>"], {}
+        return 0, ["ℹ️ <b>Isi Website Tidak Dapat Diakses</b><br><span style='color:rgb(203,213,225)'>Situs tidak dapat dibuka untuk pemeriksaan isi. Kemungkinan situs sudah tidak aktif atau diblokir. Penilaian hanya berdasarkan nama domain.</span>"], {}
     score_add = 0
     reasons_add = []
     found_inputs = {}
     inputs = re.findall(r'<input[^>]+>', html_clean)
     inputs_text = " ".join(inputs)
-    # FIX 1: Hanya hitung password kalo beneran ada <input type="password">
     if re.search(r'type\s*=\s*["\']password["\']', inputs_text):
         found_inputs['password'] = 20
-    # STRICT: PIN, OTP, CVV dll - tetap dari name/id/placeholder di input
     for keyword, poin in SENSITIVE_INPUTS_STRICT.items():
         if re.search(r'\b' + re.escape(keyword) + r'\b', inputs_text):
             found_inputs[keyword] = poin
     text_only = re.sub(r'<[^>]+>', ' ', html_clean)
-    # LOOSE: Hanya dari input, JANGAN dari teks bebas (biar gak ngawur)
     for keyword, poin in SENSITIVE_INPUTS_LOOSE.items():
         if re.search(r'\b' + re.escape(keyword) + r'\b', inputs_text):
             found_inputs[keyword] = poin
     panic_found = [w for w in PANIC_WORDS if w in text_only]
     if panic_found:
         score_add += 15
-        reasons_add.append(f"⚠️ <b>Penggunaan Bahasa Mendesak Terdeteksi</b><br><b>Kata yang ditemukan:</b> {', '.join(panic_found[:3])}<br><span style='color:#fde68a'>Situs menggunakan kata yang menimbulkan rasa panik atau urgensi. Situs resmi tidak menggunakan bahasa yang menekan pengguna untuk segera bertindak.</span>")
+        reasons_add.append(f"⚠️ <b>Penggunaan Bahasa Mendesak Terdeteksi</b><br><b>Kata yang ditemukan:</b> {', '.join(panic_found[:3])}<br><span style='color:rgb(253,230,138)'>Situs menggunakan kata yang menimbulkan rasa panik atau urgensi. Situs resmi tidak menggunakan bahasa yang menekan pengguna untuk segera bertindak.</span>")
     if found_inputs:
         total_input_score = sum(found_inputs.values())
         total_input_score = min(total_input_score, 60)
@@ -217,18 +215,18 @@ def check_website_content(url, domain):
             clean = k.replace("_teks", "").replace("_", " ").upper()
             if clean not in input_names:
                 input_names.append(clean)
-        reasons_add.append(f"🔍 <b>Hasil Pemeriksaan Isi Website</b><br><b>Data yang diminta:</b> {', '.join(input_names)}<br><span style='color:#fca5a5'>Situs ini meminta data sensitif melalui formulir. Data tersebut sering disalahgunakan untuk pengambilalihan akun atau pencurian dana.</span>")
+        reasons_add.append(f"🔍 <b>Hasil Pemeriksaan Isi Website</b><br><b>Data yang diminta:</b> {', '.join(input_names)}<br><span style='color:rgb(252,165,165)'>Situs ini meminta data sensitif melalui formulir. Data tersebut sering disalahgunakan untuk pengambilalihan akun atau pencurian dana.</span>")
         has_pin = any('pin' in k or 'p1n' in k for k in found_inputs.keys())
         has_otp = any('otp' in k or 'kode_verifikasi' in k for k in found_inputs.keys())
         if has_pin and has_otp:
             score_add += 20
-            reasons_add.append("⛔ <b>Permintaan PIN + OTP Secara Bersamaan</b><br><span style='color:#fca5a5'>Situs ini meminta PIN dan kode OTP pada halaman yang sama. Bank, dompet digital, maupun marketplace resmi tidak pernah meminta PIN dan OTP secara bersamaan. Permintaan ini mengindikasikan upaya pencurian akun.</span>")
+            reasons_add.append("⛔ <b>Permintaan PIN + OTP Secara Bersamaan</b><br><span style='color:rgb(252,165,165)'>Situs ini meminta PIN dan kode OTP pada halaman yang sama. Bank, dompet digital, maupun marketplace resmi tidak pernah meminta PIN dan OTP secara bersamaan. Permintaan ini mengindikasikan upaya pencurian akun.</span>")
         has_cvv = any('cvv' in k or 'cvc' in k for k in found_inputs.keys())
         if has_cvv:
             score_add += 20
-            reasons_add.append("⛔ <b>Permintaan CVV / CVC Kartu</b><br><span style='color:#fca5a5'>Situs ini meminta CVV / CVC, yaitu 3 digit di belakang kartu. Kode ini bersifat sangat rahasia. Situs resmi tidak pernah meminta CVV melalui tautan WhatsApp / SMS.</span>")
+            reasons_add.append("⛔ <b>Permintaan CVV / CVC Kartu</b><br><span style='color:rgb(252,165,165)'>Situs ini meminta CVV / CVC, yaitu 3 digit di belakang kartu. Kode ini bersifat sangat rahasia. Situs resmi tidak pernah meminta CVV melalui tautan WhatsApp / SMS.</span>")
     else:
-        reasons_add.append("✅ <b>Hasil Pemeriksaan Isi Website</b><br><span style='color:#cbd5e1'>Tidak ditemukan formulir yang meminta PIN, OTP, kata sandi, atau data rekening. Situs ini kemungkinan hanya berisi informasi / berita.</span>")
+        reasons_add.append("✅ <b>Hasil Pemeriksaan Isi Website</b><br><span style='color:rgb(203,213,225)'>Tidak ditemukan formulir yang meminta PIN, OTP, kata sandi, atau data rekening. Situs ini kemungkinan hanya berisi informasi / berita.</span>")
     return score_add, reasons_add, found_inputs
 
 def check_url(raw_url, deep_check=True):
@@ -242,9 +240,8 @@ def check_url(raw_url, deep_check=True):
         domain = parsed.netloc.lower().split(':')[0].replace("www.", "")
     except:
         domain = url
-    # FIX 2: Kalo yang dicek domain sendiri, langsung return, jangan di-scan
-    if domain in SELF_DOMAINS:
-        return {"domain": domain, "score": 0, "reasons": ["✅ <b>Ini Domain TORANG GUARD Sendiri</b><br><span style='color:#bbf7d0'>Ini adalah website TORANG GUARD, bukan situs yang perlu dicek. Silakan masukkan tautan lain yang ingin diperiksa.</span>"], "verdict": "Ini adalah domain TORANG GUARD sendiri.", "category": "Sistem TORANG GUARD"}
+    if is_self_domain(domain):
+        return {"domain": domain, "score": 0, "reasons": ["✅ <b>Ini Domain TORANG GUARD Sendiri</b><br><span style='color:rgb(187,247,208)'>Ini adalah website TORANG GUARD, bukan situs yang perlu dicek. Silakan masukkan tautan lain yang ingin diperiksa.</span>"], "verdict": "Ini adalah domain TORANG GUARD sendiri.", "category": "Sistem TORANG GUARD"}
     score = 0; reasons = []; category = "Tidak Dikenal / Umum"
     ciri_score = 0
     is_campus = domain.endswith(".ac.id") or "siakad" in domain or "in8" in domain
@@ -269,14 +266,14 @@ def check_url(raw_url, deep_check=True):
     for tld in BLOCKED_TLDS:
         if domain.endswith(tld):
             score += 50; ciri_score += 50
-            reasons.append(f"⛔ <b>Ekstensi Domain Berisiko Tinggi</b><br><b>Ekstensi:</b> {tld}<br><b>Domain yang dicek:</b> {domain}<br><span style='color:#fca5a5'>Ekstensi ini jarang digunakan oleh situs resmi Indonesia dan sering disalahgunakan untuk penipuan karena biaya pendaftaran yang rendah dan proses pembuatan yang mudah.</span>")
+            reasons.append(f"⛔ <b>Ekstensi Domain Berisiko Tinggi</b><br><b>Ekstensi:</b> {tld}<br><b>Domain yang dicek:</b> {domain}<br><span style='color:rgb(252,165,165)'>Ekstensi ini jarang digunakan oleh situs resmi Indonesia dan sering disalahgunakan untuk penipuan karena biaya pendaftaran yang rendah dan proses pembuatan yang mudah.</span>")
             tld_blocked = True
             break
     if not tld_blocked:
         for tld in SUSPICIOUS_TLDS:
             if domain.endswith(tld):
                 score += 30; ciri_score += 30
-                reasons.append(f"⚠️ <b>Ekstensi Domain Perlu Diwaspadai</b><br><b>Ekstensi:</b> {tld}<br><b>Domain yang dicek:</b> {domain}<br><span style='color:#fde68a'>Ekstensi ini cukup sering digunakan untuk situs penipuan. Situs resmi umumnya menggunakan .id, .co.id, .com, .ac.id, atau .go.id.</span>")
+                reasons.append(f"⚠️ <b>Ekstensi Domain Perlu Diwaspadai</b><br><b>Ekstensi:</b> {tld}<br><b>Domain yang dicek:</b> {domain}<br><span style='color:rgb(253,230,138)'>Ekstensi ini cukup sering digunakan untuk situs penipuan. Situs resmi umumnya menggunakan .id, .co.id, .com, .ac.id, atau .go.id.</span>")
                 break
     brand_found = None
     for brand, legit_domain in BRAND_IMPERSONATION.items():
@@ -297,18 +294,18 @@ def check_url(raw_url, deep_check=True):
     if brand_found:
         brand, legit_domain = brand_found
         score += 60; ciri_score += 60
-        reasons.append(f"⛔ <b>Penyamaran Brand Terdeteksi</b><br><b>Domain yang dicek:</b> {domain}<br><b>Mengatasnamakan:</b> {brand.upper()}<br><b>Domain resmi {brand.upper()}:</b> {legit_domain}<br><span style='color:#fca5a5'>Domain ini mengatasnamakan {brand.upper()} tetapi bukan domain resmi. Modus ini umumnya digunakan untuk meminta PIN, OTP, kata sandi, atau mengarahkan korban untuk melakukan transfer.</span>")
+        reasons.append(f"⛔ <b>Penyamaran Brand Terdeteksi</b><br><b>Domain yang dicek:</b> {domain}<br><b>Mengatasnamakan:</b> {brand.upper()}<br><b>Domain resmi {brand.upper()}:</b> {legit_domain}<br><span style='color:rgb(252,165,165)'>Domain ini mengatasnamakan {brand.upper()} tetapi bukan domain resmi. Modus ini umumnya digunakan untuk meminta PIN, OTP, kata sandi, atau mengarahkan korban untuk melakukan transfer.</span>")
     if re.match(r'^\d+\.\d+\.\d+\.\d+$', domain):
         score += 40; ciri_score += 40
-        reasons.append(f"⛔ <b>Menggunakan Alamat IP Langsung</b><br><b>Domain yang dicek:</b> {domain}<br><span style='color:#fca5a5'>Situs menggunakan alamat IP, bukan nama domain. Situs resmi tidak menggunakan cara ini.</span>")
+        reasons.append(f"⛔ <b>Menggunakan Alamat IP Langsung</b><br><b>Domain yang dicek:</b> {domain}<br><span style='color:rgb(252,165,165)'>Situs menggunakan alamat IP, bukan nama domain. Situs resmi tidak menggunakan cara ini.</span>")
     found_words = [w for w in SUSPICIOUS_WORDS if w in domain]
     if found_words:
         score += 25; ciri_score += 25
-        reasons.append(f"⚠️ <b>Kata Kunci Penipuan Terdeteksi</b><br><b>Kata yang ditemukan:</b> {', '.join(found_words)}<br><b>Domain yang dicek:</b> {domain}<br><span style='color:#fde68a'>Kata tersebut sering digunakan pada modus hadiah palsu, saldo gratis, atau pemberitahuan akun diblokir untuk mendorong pengguna segera mengklik.</span>")
+        reasons.append(f"⚠️ <b>Kata Kunci Penipuan Terdeteksi</b><br><b>Kata yang ditemukan:</b> {', '.join(found_words)}<br><b>Domain yang dicek:</b> {domain}<br><span style='color:rgb(253,230,138)'>Kata tersebut sering digunakan pada modus hadiah palsu, saldo gratis, atau pemberitahuan akun diblokir untuk mendorong pengguna segera mengklik.</span>")
     ciri_score = min(ciri_score, 100)
     if is_legit_domain:
         nama_asli = LEGIT_DOMAINS.get(domain) or GLOBAL_BRANDS.get(domain)
-        reasons.append(f"✅ <b>Terdaftar di TORANG GUARD</b><br><b>Domain:</b> {domain}<br><b>Identitas:</b> {nama_asli}<br><span style='color:#bbf7d0'>Domain ini tercatat sebagai domain resmi.</span>")
+        reasons.append(f"✅ <b>Terdaftar di TORANG GUARD</b><br><b>Domain:</b> {domain}<br><b>Identitas:</b> {nama_asli}<br><span style='color:rgb(187,247,208)'>Domain ini tercatat sebagai domain resmi.</span>")
         score = max(0, score - 10)
         if found_words:
             score += 20
@@ -320,7 +317,7 @@ def check_url(raw_url, deep_check=True):
                 break
         if parent_found:
             nama_parent = LEGIT_DOMAINS.get(parent_found) or GLOBAL_BRANDS.get(parent_found)
-            reasons.append(f"✅ <b>Subdomain Resmi</b><br><b>Domain yang dicek:</b> {domain}<br><b>Induk resmi:</b> {parent_found} ({nama_parent})<br><span style='color:#bbf7d0'>Domain ini merupakan subdomain dari domain resmi.</span>")
+            reasons.append(f"✅ <b>Subdomain Resmi</b><br><b>Domain yang dicek:</b> {domain}<br><b>Induk resmi:</b> {parent_found} ({nama_parent})<br><span style='color:rgb(187,247,208)'>Domain ini merupakan subdomain dari domain resmi.</span>")
             score = max(0, score - 15)
         else:
             best_match = None; best_ratio = 0
@@ -334,21 +331,21 @@ def check_url(raw_url, deep_check=True):
                 fuzzy_skor, fuzzy_status, fr, fs, ft, cr, ct = fuzzy_typo_score(sim_persen, ciri_score)
                 if fuzzy_status == "TINGGI":
                     score += 70
-                    reasons.append(f"⛔<b>TYPO SQUATTING TERDETEKSI [FUZZY 2 INPUT: TINGGI]</b><br><b>Domain yang dicek:</b> {domain}<br><b>Domain resmi:</b> {legit} ({name})<br><b>Tingkat kemiripan:</b> {sim_persen}%<br><b>Skor Ciri Bahaya:</b> {ciri_score}<br><b>Derajat Fuzzy - Rendah:</b> {fr:.2f}, <b>Sedang:</b> {fs:.2f}, <b>Tinggi:</b> {ft:.2f}<br><b>Ciri Rendah:</b> {cr:.2f}, <b>Ciri Tinggi:</b> {ct:.2f}<br><b>Skor Defuzzifikasi:</b> {fuzzy_skor:.1f}<br><span style='color:#fca5a5'>Berdasarkan inferensi Fuzzy Mamdani 2 input, domain ini masuk kategori bahaya TINGGI.</span>")
+                    reasons.append(f"⛔<b>TYPO SQUATTING TERDETEKSI [FUZZY 2 INPUT: TINGGI]</b><br><b>Domain yang dicek:</b> {domain}<br><b>Domain resmi:</b> {legit} ({name})<br><b>Tingkat kemiripan:</b> {sim_persen}%<br><b>Skor Ciri Bahaya:</b> {ciri_score}<br><b>Derajat Fuzzy - Rendah:</b> {fr:.2f}, <b>Sedang:</b> {fs:.2f}, <b>Tinggi:</b> {ft:.2f}<br><b>Ciri Rendah:</b> {cr:.2f}, <b>Ciri Tinggi:</b> {ct:.2f}<br><b>Skor Defuzzifikasi:</b> {fuzzy_skor:.1f}<br><span style='color:rgb(252,165,165)'>Berdasarkan inferensi Fuzzy Mamdani 2 input, domain ini masuk kategori bahaya TINGGI.</span>")
                 elif fuzzy_status == "SEDANG":
                     score += 30
-                    reasons.append(f"⚠️<b>Kemiripan Domain Terdeteksi [FUZZY 2 INPUT: SEDANG]</b><br><b>Domain yang dicek:</b> {domain}<br><b>Domain resmi:</b> {legit} ({name})<br><b>Tingkat kemiripan:</b> {sim_persen}%<br><b>Skor Ciri Bahaya:</b> {ciri_score}<br><b>Derajat Fuzzy - Rendah:</b> {fr:.2f}, <b>Sedang:</b> {fs:.2f}, <b>Tinggi:</b> {ft:.2f}<br><b>Skor Defuzzifikasi:</b> {fuzzy_skor:.1f}<br><span style='color:#fde68a'>Domain ini memiliki kemiripan sedang dengan domain resmi berdasarkan Logika Fuzzy 2 input.</span>")
+                    reasons.append(f"⚠️<b>Kemiripan Domain Terdeteksi [FUZZY 2 INPUT: SEDANG]</b><br><b>Domain yang dicek:</b> {domain}<br><b>Domain resmi:</b> {legit} ({name})<br><b>Tingkat kemiripan:</b> {sim_persen}%<br><b>Skor Ciri Bahaya:</b> {ciri_score}<br><b>Derajat Fuzzy - Rendah:</b> {fr:.2f}, <b>Sedang:</b> {fs:.2f}, <b>Tinggi:</b> {ft:.2f}<br><b>Skor Defuzzifikasi:</b> {fuzzy_skor:.1f}<br><span style='color:rgb(253,230,138)'>Domain ini memiliki kemiripan sedang dengan domain resmi berdasarkan Logika Fuzzy 2 input.</span>")
                 else:
                     if domain.endswith(".ac.id"):
-                        reasons.append(f"✅ <b>Domain Kampus (.ac.id) [FUZZY: RENDAH]</b><br><b>Domain yang dicek:</b> {domain}<br><b>Kemiripan tertinggi:</b> {sim_persen}% dengan {legit}<br><span style='color:#bbf7d0'>Ekstensi .ac.id hanya dapat dimiliki oleh perguruan tinggi resmi di Indonesia melalui PANDI. Kemungkinan besar domain ini asli.</span>")
+                        reasons.append(f"✅ <b>Domain Kampus (.ac.id) [FUZZY: RENDAH]</b><br><b>Domain yang dicek:</b> {domain}<br><b>Kemiripan tertinggi:</b> {sim_persen}% dengan {legit}<br><span style='color:rgb(187,247,208)'>Ekstensi .ac.id hanya dapat dimiliki oleh perguruan tinggi resmi di Indonesia melalui PANDI. Kemungkinan besar domain ini asli.</span>")
                     elif "siakad" in domain and not domain.endswith(".ac.id"):
                         score += 40
-                        reasons.append(f"⛔ <b>Portal Akademik Tidak Resmi</b><br><b>Domain yang dicek:</b> {domain}<br><span style='color:#fca5a5'>Domain mengatasnamakan SIAKAD tetapi tidak menggunakan ekstensi .ac.id. Portal akademik resmi selalu menggunakan .ac.id.</span>")
+                        reasons.append(f"⛔ <b>Portal Akademik Tidak Resmi</b><br><b>Domain yang dicek:</b> {domain}<br><span style='color:rgb(252,165,165)'>Domain mengatasnamakan SIAKAD tetapi tidak menggunakan ekstensi .ac.id. Portal akademik resmi selalu menggunakan .ac.id.</span>")
                     else:
-                        reasons.append(f"ℹ️ <b>Domain Belum Terdaftar [FUZZY: RENDAH]</b><br><b>Domain yang dicek:</b> {domain}<br><b>Kemiripan tertinggi:</b> {sim_persen}% dengan {legit}<br><span style='color:#cbd5e1'>Domain ini belum tercatat di database TORANG GUARD dan tidak memiliki kemiripan signifikan dengan domain resmi. Tetap berhati-hati jika situs meminta kata sandi, PIN, kode OTP, atau data rekening.</span>")
+                        reasons.append(f"ℹ️ <b>Domain Belum Terdaftar [FUZZY: RENDAH]</b><br><b>Domain yang dicek:</b> {domain}<br><b>Kemiripan tertinggi:</b> {sim_persen}% dengan {legit}<br><span style='color:rgb(203,213,225)'>Domain ini belum tercatat di database TORANG GUARD dan tidak memiliki kemiripan signifikan dengan domain resmi. Tetap berhati-hati jika situs meminta kata sandi, PIN, kode OTP, atau data rekening.</span>")
             if domain.count('.') >= 3 and not parent_found:
                 score += 20
-                reasons.append(f"⚠️ <b>Struktur Subdomain Berlapis</b><br><b>Domain yang dicek:</b> {domain}<br><span style='color:#fde68a'>Domain memiliki terlalu banyak subdomain. Domain asli dapat dilihat dari bagian paling belakang. Contoh: ustj.ac.id.maling.com - domain aslinya adalah maling.com, bukan ustj.ac.id.</span>")
+                reasons.append(f"⚠️ <b>Struktur Subdomain Berlapis</b><br><b>Domain yang dicek:</b> {domain}<br><span style='color:rgb(253,230,138)'>Domain memiliki terlalu banyak subdomain. Domain asli dapat dilihat dari bagian paling belakang. Contoh: ustj.ac.id.maling.com - domain aslinya adalah maling.com, bukan ustj.ac.id.</span>")
     if not is_legit_domain:
         umur_domain, whois_skor, whois_pesan = check_domain_age(domain)
         if whois_skor > 0:
@@ -358,15 +355,15 @@ def check_url(raw_url, deep_check=True):
         elif whois_pesan:
             reasons.append(whois_pesan)
     if not url.startswith("https://"):
-        score += 10; reasons.append("⚠️ <b>Tidak Menggunakan HTTPS</b><br><span style='color:#fde68a'>Situs tidak menggunakan HTTPS. Situs resmi umumnya sudah menggunakan HTTPS (ditandai ikon gembok).</span>")
+        score += 10; reasons.append("⚠️ <b>Tidak Menggunakan HTTPS</b><br><span style='color:rgb(253,230,138)'>Situs tidak menggunakan HTTPS. Situs resmi umumnya sudah menggunakan HTTPS (ditandai ikon gembok).</span>")
     else:
-        reasons.append("✅ <b>Koneksi Menggunakan HTTPS</b><br><span style='color:#bbf7d0'>Situs sudah menggunakan HTTPS.</span>")
+        reasons.append("✅ <b>Koneksi Menggunakan HTTPS</b><br><span style='color:rgb(187,247,208)'>Situs sudah menggunakan HTTPS.</span>")
     if deep_check and not is_legit_domain and score < 70:
         c_score, c_reasons, c_inputs = check_website_content(url, domain)
         score += c_score
         reasons.extend(c_reasons)
     elif is_legit_domain:
-        reasons.append("ℹ️ <b>Domain Resmi Terverifikasi</b><br><span style='color:#cbd5e1'>Domain ini sudah terdaftar sebagai domain resmi, sehingga pemeriksaan isi website tidak diperlukan. Formulir login pada domain ini merupakan hal yang wajar.</span>")
+        reasons.append("ℹ️ <b>Domain Resmi Terverifikasi</b><br><span style='color:rgb(203,213,225)'>Domain ini sudah terdaftar sebagai domain resmi, sehingga pemeriksaan isi website tidak diperlukan. Formulir login pada domain ini merupakan hal yang wajar.</span>")
     score = min(score, 100)
     if score >= 70:
         if is_campus:
