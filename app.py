@@ -228,10 +228,10 @@ def check_url(raw_url, deep_check=True):
                 legit, name = best_match
                 if best_ratio > 0.82:
                     score += 70
-                    reasons.append(f"⛔ <b>TYPO SQUATTING TERDETEKSI</b><br><b>Domain yang dicek:</b> {domain}<br><b>Domain resmi:</b> {legit} ({name})<br><b>Tingkat kemiripan:</b> {int(best_ratio*100)}%<br><span style='color:#fca5a5'>Domain ini meniru domain resmi dengan perbedaan kecil pada penulisan. Teknik ini umum digunakan untuk mengelabui pengguna agar mengira sedang mengakses situs resmi.</span>")
+                    reasons.append(f"⛔<b>TYPO SQUATTING TERDETEKSI</b><br><b>Domain yang dicek:</b> {domain}<br><b>Domain resmi:</b> {legit} ({name})<br><b>Tingkat kemiripan:</b> {int(best_ratio*100)}%<br><span style='color:#fca5a5'>Domain ini meniru domain resmi dengan perbedaan kecil pada penulisan. Teknik ini umum digunakan untuk mengelabui pengguna agar mengira sedang mengakses situs resmi.</span>")
                 elif best_ratio > 0.65:
                     score += 30
-                    reasons.append(f"⚠️ <b>Kemiripan Domain Terdeteksi</b><br><b>Domain yang dicek:</b> {domain}<br><b>Domain resmi:</b> {legit} ({name})<br><b>Tingkat kemiripan:</b> {int(best_ratio*100)}%<br><span style='color:#fde68a'>Domain ini memiliki kemiripan dengan domain resmi. Periksa kembali penulisan domain sebelum melanjutkan.</span>")
+                    reasons.append(f"⚠️<b>Kemiripan Domain Terdeteksi</b><br><b>Domain yang dicek:</b> {domain}<br><b>Domain resmi:</b> {legit} ({name})<br><b>Tingkat kemiripan:</b> {int(best_ratio*100)}%<br><span style='color:#fde68a'>Domain ini memiliki kemiripan dengan domain resmi. Periksa kembali penulisan domain sebelum melanjutkan.</span>")
                 else:
                     if domain.endswith(".ac.id"):
                         reasons.append(f"✅ <b>Domain Kampus (.ac.id)</b><br><b>Domain yang dicek:</b> {domain}<br><span style='color:#bbf7d0'>Ekstensi .ac.id hanya dapat dimiliki oleh perguruan tinggi resmi di Indonesia melalui PANDI. Kemungkinan besar domain ini asli.</span>")
