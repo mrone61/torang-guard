@@ -72,12 +72,9 @@ BRAND_IMPERSONATION = {
     'facebook': 'facebook.com', 'instagram': 'instagram.com', 'google': 'google.com', 'tiktok': 'tiktok.com',
 }
 
-# FIX 2: Daftar input sensitif - Sekarang dibedain mana yang bahaya kalau di teks, mana yang harus di input
-# Kata pendek (pin, otp, kk, cvv) -> HARUS ada di <input> beneran, gak boleh cuma di teks
 SENSITIVE_INPUTS_STRICT = {
     'pin': 30, 'otp': 30, 'cvv': 35, 'cvc': 35, 'kk': 20, 'nik': 20, 'ktp': 15,
 }
-# Kata panjang (password, rekening) -> Boleh di teks, karena jarang muncul kebetulan
 SENSITIVE_INPUTS_LOOSE = {
     'password': 20, 'passcode': 25, 'rekening': 20, 'nomor_rekening': 20, 'kartu_kredit': 25, 'kartu_atm': 25,
 }
@@ -94,32 +91,25 @@ def check_website_content(url, domain):
         html_clean = re.sub(r'<script.*?</script>', '', html, flags=re.DOTALL)
         html_clean = re.sub(r'<style.*?</style>', '', html_clean, flags=re.DOTALL)
     except Exception as e:
-        return 0, ["ℹ️ Website-nya tidak bisa dibuka untuk dicek isinya (mungkin sudah mati / diblokir). TORANG GUARD hanya cek dari nama domainnya saja."], {}
+        return 0, ["ℹ️ <b>Isi Website Tidak Dapat Diakses</b><br><span style='color:#cbd5e1'>Situs tidak dapat dibuka untuk pemeriksaan isi. Kemungkinan situs sudah tidak aktif atau diblokir. Penilaian hanya berdasarkan nama domain.</span>"], {}
     score_add = 0
     reasons_add = []
     found_inputs = {}
-    # 1. Cari di <input> BENERAN - Ini yang paling akurat
     inputs = re.findall(r'<input[^>]+>', html_clean)
     inputs_text = " ".join(inputs)
-    # FIX: Untuk kata pendek, HARUS ada di input, pake word boundary biar gak kena 'cookie' / 'click'
     for keyword, poin in SENSITIVE_INPUTS_STRICT.items():
-        # Cari dengan batas kata: name="pin", id="otp", placeholder="Masukkan PIN", dll
-        # Pakai regex \b biar 'kk' di 'cookie' gak kehitung, 'pin' di 'shipping' gak kehitung
         if re.search(r'\b' + re.escape(keyword) + r'\b', inputs_text):
             found_inputs[keyword] = poin
-    # 2. Untuk kata panjang, boleh cari di teks juga, tapi juga pake \b
     text_only = re.sub(r'<[^>]+>', ' ', html_clean)
     for keyword, poin in SENSITIVE_INPUTS_LOOSE.items():
-        # Cek di input dulu
         if re.search(r'\b' + re.escape(keyword) + r'\b', inputs_text):
             found_inputs[keyword] = poin
-        # Kalau gak ada di input, tapi ada di teks "Masukkan Password Anda" -> hitung setengah
         elif re.search(r'\b' + re.escape(keyword) + r'\b', text_only):
             found_inputs[keyword + "_teks"] = poin // 2
     panic_found = [w for w in PANIC_WORDS if w in text_only]
     if panic_found:
         score_add += 15
-        reasons_add.append(f"⚠️ Website-nya pakai kata yang bikin panik: {', '.join(panic_found[:3])} - Penipu suka bikin orang panik biar langsung klik / isi tanpa mikir. Website resmi tidak pernah nakut-nakutin kayak gini.")
+        reasons_add.append(f"⚠️ <b>Penggunaan Bahasa Mendesak Terdeteksi</b><br><b>Kata yang ditemukan:</b> {', '.join(panic_found[:3])}<br><span style='color:#fde68a'>Situs menggunakan kata yang menimbulkan rasa panik atau urgensi. Situs resmi tidak menggunakan bahasa yang menekan pengguna untuk segera bertindak.</span>")
     if found_inputs:
         total_input_score = sum(found_inputs.values())
         total_input_score = min(total_input_score, 60)
@@ -129,24 +119,24 @@ def check_website_content(url, domain):
             clean = k.replace("_teks", "").replace("_", " ").upper()
             if clean not in input_names:
                 input_names.append(clean)
-        reasons_add.append(f"🔍 HASIL CEK ISI WEBSITE: Website ini minta data sensitif: {', '.join(input_names)}. Hati-hati, ini yang sering dipakai penipu untuk maling akun / duit kamu.")
+        reasons_add.append(f"🔍 <b>Hasil Pemeriksaan Isi Website</b><br><b>Data yang diminta:</b> {', '.join(input_names)}<br><span style='color:#fca5a5'>Situs ini meminta data sensitif melalui formulir. Data tersebut sering disalahgunakan untuk pengambilalihan akun atau pencurian dana.</span>")
         has_pin = any('pin' in k for k in found_inputs.keys())
         has_otp = any('otp' in k for k in found_inputs.keys())
         if has_pin and has_otp:
             score_add += 20
-            reasons_add.append("⛔ BAHAYA TINGKAT TERTINGGI! Website ini minta PIN + OTP SEKALIGUS! Tidak ada Bank / DANA / OVO / Shopee asli yang minta PIN + OTP di halaman yang sama. Ini sudah pasti PENIPU!")
+            reasons_add.append("⛔ <b>Permintaan PIN + OTP Secara Bersamaan</b><br><span style='color:#fca5a5'>Situs ini meminta PIN dan kode OTP pada halaman yang sama. Bank, dompet digital, maupun marketplace resmi tidak pernah meminta PIN dan OTP secara bersamaan. Permintaan ini mengindikasikan upaya pencurian akun.</span>")
         has_cvv = any('cvv' in k or 'cvc' in k for k in found_inputs.keys())
         if has_cvv:
             score_add += 20
-            reasons_add.append("⛔ Website ini minta CVV / CVC Kartu ATM! CVV itu 3 angka di belakang kartu, sangat rahasia. Tidak ada website resmi yang minta CVV lewat link WA / SMS. Ini PENIPU!")
+            reasons_add.append("⛔ <b>Permintaan CVV / CVC Kartu</b><br><span style='color:#fca5a5'>Situs ini meminta CVV / CVC, yaitu 3 digit di belakang kartu. Kode ini bersifat sangat rahasia. Situs resmi tidak pernah meminta CVV melalui tautan WhatsApp / SMS.</span>")
     else:
-        reasons_add.append("✅ HASIL CEK ISI WEBSITE: Website ini TIDAK minta PIN / OTP / Password / Data Rekening di form-nya. Kemungkinan website ini hanya untuk dibaca / berita / informasi saja, jadi lebih aman.")
+        reasons_add.append("✅ <b>Hasil Pemeriksaan Isi Website</b><br><span style='color:#cbd5e1'>Tidak ditemukan formulir yang meminta PIN, OTP, kata sandi, atau data rekening. Situs ini kemungkinan hanya berisi informasi / berita.</span>")
     return score_add, reasons_add, found_inputs
 
 def check_url(raw_url, deep_check=True):
     url = raw_url.strip()
     if not url:
-        return {"domain": "", "score": 0, "reasons": ["Linknya kosong bro, paste link dulu ya."], "verdict": "Link kosong. Paste link yang mau dicek dulu.", "category": "Kosong"}
+        return {"domain": "", "score": 0, "reasons": ["Tautan masih kosong. Silakan masukkan tautan yang akan diperiksa."], "verdict": "Tautan kosong. Silakan masukkan tautan yang akan diperiksa.", "category": "Kosong"}
     if not url.startswith("http"):
         url = "https://" + url
     try:
@@ -157,7 +147,6 @@ def check_url(raw_url, deep_check=True):
     score = 0; reasons = []; category = "Tidak Dikenal / Umum"
     is_campus = domain.endswith(".ac.id") or "siakad" in domain or "in8" in domain
     is_legit_domain = domain in LEGIT_DOMAINS or domain in GLOBAL_BRANDS
-    # Kalau domainnya facebook.com yang asli, kategori-nya jadi Media Sosial, bukan Tidak Dikenal
     if domain in GLOBAL_BRANDS:
         category = f"Media Sosial / Global - {GLOBAL_BRANDS[domain]}"
     elif domain.endswith(".ac.id"):
@@ -176,14 +165,14 @@ def check_url(raw_url, deep_check=True):
     for tld in BLOCKED_TLDS:
         if domain.endswith(tld):
             score += 50
-            reasons.append(f"⛔ Pakai akhiran domain {tld} yang 99% dipakai penipu. Website resmi Indonesia hampir tidak pernah pakai {tld}. Penipu suka pakai ini karena murah (cuma 10rb-an) dan gampang dibikin.")
+            reasons.append(f"⛔ <b>Ekstensi Domain Berisiko Tinggi</b><br><b>Ekstensi:</b> {tld}<br><b>Domain yang dicek:</b> {domain}<br><span style='color:#fca5a5'>Ekstensi ini jarang digunakan oleh situs resmi Indonesia dan sering disalahgunakan untuk penipuan karena biaya pendaftaran yang rendah dan proses pembuatan yang mudah.</span>")
             tld_blocked = True
             break
     if not tld_blocked:
         for tld in SUSPICIOUS_TLDS:
             if domain.endswith(tld):
                 score += 30
-                reasons.append(f"⚠️ Pakai akhiran domain {tld} yang sering dipakai penipu. Hati-hati, website resmi biasanya pakai .id, .co.id, .com, atau .go.id.")
+                reasons.append(f"⚠️ <b>Ekstensi Domain Perlu Diwaspadai</b><br><b>Ekstensi:</b> {tld}<br><b>Domain yang dicek:</b> {domain}<br><span style='color:#fde68a'>Ekstensi ini cukup sering digunakan untuk situs penipuan. Situs resmi umumnya menggunakan .id, .co.id, .com, .ac.id, atau .go.id.</span>")
                 break
     brand_found = None
     for brand, legit_domain in BRAND_IMPERSONATION.items():
@@ -204,17 +193,16 @@ def check_url(raw_url, deep_check=True):
     if brand_found:
         brand, legit_domain = brand_found
         score += 60
-        reasons.append(f"⛔ NGAKU-NGAKU {brand.upper()}! Domain ini: {domain} ngaku {brand.upper()} tapi domain aslinya cuma {legit_domain}. Ini MODUS PENIPUAN! Biasanya minta PIN, OTP, Password, atau suruh transfer.")
+        reasons.append(f"⛔ <b>Penyamaran Brand Terdeteksi</b><br><b>Domain yang dicek:</b> {domain}<br><b>Mengatasnamakan:</b> {brand.upper()}<br><b>Domain resmi {brand.upper()}:</b> {legit_domain}<br><span style='color:#fca5a5'>Domain ini mengatasnamakan {brand.upper()} tetapi bukan domain resmi. Modus ini umumnya digunakan untuk meminta PIN, OTP, kata sandi, atau mengarahkan korban untuk melakukan transfer.</span>")
     if re.match(r'^\d+\.\d+\.\d+\.\d+$', domain):
-        score += 40; reasons.append("⛔ Pakai IP Address langsung, bukan nama domain asli. Website resmi tidak pernah pakai cara ini.")
+        score += 40; reasons.append(f"⛔ <b>Menggunakan Alamat IP Langsung</b><br><b>Domain yang dicek:</b> {domain}<br><span style='color:#fca5a5'>Situs menggunakan alamat IP, bukan nama domain. Situs resmi tidak menggunakan cara ini.</span>")
     found_words = [w for w in SUSPICIOUS_WORDS if w in domain]
     if found_words:
         score += 25
-        reasons.append(f"⚠️ Ada kata yang sering dipakai penipu di namanya: {', '.join(found_words)} - Modus hadiah palsu / saldo gratis / akun diblokir sering pakai kata ini untuk bikin orang panik dan langsung klik.")
+        reasons.append(f"⚠️ <b>Kata Kunci Penipuan Terdeteksi</b><br><b>Kata yang ditemukan:</b> {', '.join(found_words)}<br><b>Domain yang dicek:</b> {domain}<br><span style='color:#fde68a'>Kata tersebut sering digunakan pada modus hadiah palsu, saldo gratis, atau pemberitahuan akun diblokir untuk mendorong pengguna segera mengklik.</span>")
     if is_legit_domain:
-        # Cari nama asli-nya di mana
         nama_asli = LEGIT_DOMAINS.get(domain) or GLOBAL_BRANDS.get(domain)
-        reasons.append(f"✅ TERDAFTAR di TORANG GUARD sebagai: {nama_asli}")
+        reasons.append(f"✅ <b>Terdaftar di TORANG GUARD</b><br><b>Domain:</b> {domain}<br><b>Identitas:</b> {nama_asli}<br><span style='color:#bbf7d0'>Domain ini tercatat sebagai domain resmi.</span>")
         score = max(0, score - 10)
         if found_words:
             score += 20
@@ -226,63 +214,57 @@ def check_url(raw_url, deep_check=True):
                 break
         if parent_found:
             nama_parent = LEGIT_DOMAINS.get(parent_found) or GLOBAL_BRANDS.get(parent_found)
-            reasons.append(f"✅ Subdomain resmi dari {parent_found} ({nama_parent}).")
+            reasons.append(f"✅ <b>Subdomain Resmi</b><br><b>Domain yang dicek:</b> {domain}<br><b>Induk resmi:</b> {parent_found} ({nama_parent})<br><span style='color:#bbf7d0'>Domain ini merupakan subdomain dari domain resmi.</span>")
             score = max(0, score - 15)
         else:
-            # FIX UTAMA: Cek typo pake ALL_FOR_TYPO (LEGIT + GLOBAL), bukan cuma LEGIT doang
             best_match = None; best_ratio = 0
             for legit, name in ALL_FOR_TYPO.items():
                 ratio = difflib.SequenceMatcher(None, domain, legit).ratio()
-                # Kalau domainnya mengandung nama brand-nya, tapi bukan domain aslinya, langsung anggap mirip banget
-                # Contoh: faceboook.com mengandung 'faceboo' -> mirip facebook.com
                 if legit.split('.')[0] in domain and domain != legit and not domain.endswith("."+legit):
                     ratio = max(ratio, 0.90)
-                # Khusus buat typo 1-2 huruf: faceboook vs facebook, gogle vs google
-                # SequenceMatcher udah tinggi, tapi kita pastiin lagi pake edit distance kasar
                 if ratio > best_ratio:
                     best_ratio = ratio; best_match = (legit, name)
             if best_match:
                 legit, name = best_match
                 if best_ratio > 0.82:
-                    # FIX: Naikin dari 55 jadi 70, biar langsung MERAH, gak bisa lagi jadi AMAN
                     score += 70
-                    reasons.append(f"⛔ SANGAT MIRIP dengan {name} ({legit}) - Kemiripan {int(best_ratio*100)}%. Ini TYPO SQUATTING! Domain kamu: {domain} vs Asli: {legit}. Bedanya tipis, cuma 1 huruf, tapi itu yang bikin orang ketipu. Ini cara penipu yang paling sering dipakai!")
+                    reasons.append(f"⛔ <b>TYPO SQUATTING TERDETEKSI</b><br><b>Domain yang dicek:</b> {domain}<br><b>Domain resmi:</b> {legit} ({name})<br><b>Tingkat kemiripan:</b> {int(best_ratio*100)}%<br><span style='color:#fca5a5'>Domain ini meniru domain resmi dengan perbedaan kecil pada penulisan. Teknik ini umum digunakan untuk mengelabui pengguna agar mengira sedang mengakses situs resmi.</span>")
                 elif best_ratio > 0.65:
                     score += 30
-                    reasons.append(f"⚠️ Mirip dengan {name} ({legit}) - Kemiripan {int(best_ratio*100)}%. Domain kamu: {domain}")
+                    reasons.append(f"⚠️ <b>Kemiripan Domain Terdeteksi</b><br><b>Domain yang dicek:</b> {domain}<br><b>Domain resmi:</b> {legit} ({name})<br><b>Tingkat kemiripan:</b> {int(best_ratio*100)}%<br><span style='color:#fde68a'>Domain ini memiliki kemiripan dengan domain resmi. Periksa kembali penulisan domain sebelum melanjutkan.</span>")
                 else:
                     if domain.endswith(".ac.id"):
-                        reasons.append(f"✅ Domain .ac.id ini belum ada di database, tapi .ac.id hanya bisa dimiliki kampus resmi di Indonesia (lewat PANDI). Kemungkinan besar ASLI.")
+                        reasons.append(f"✅ <b>Domain Kampus (.ac.id)</b><br><b>Domain yang dicek:</b> {domain}<br><span style='color:#bbf7d0'>Ekstensi .ac.id hanya dapat dimiliki oleh perguruan tinggi resmi di Indonesia melalui PANDI. Kemungkinan besar domain ini asli.</span>")
                     elif "siakad" in domain and not domain.endswith(".ac.id"):
                         score += 40
-                        reasons.append(f"⛔ BAHAYA! Ngaku SIAKAD tapi TIDAK pakai .ac.id. Portal akademik asli selalu .ac.id. Domain kamu: {domain}")
+                        reasons.append(f"⛔ <b>Portal Akademik Tidak Resmi</b><br><b>Domain yang dicek:</b> {domain}<br><span style='color:#fca5a5'>Domain mengatasnamakan SIAKAD tetapi tidak menggunakan ekstensi .ac.id. Portal akademik resmi selalu menggunakan .ac.id.</span>")
                     else:
-                        reasons.append(f"ℹ️ Domain {domain} tidak ada di database TORANG GUARD. Tapi dari namanya, tidak mirip dengan domain penipu yang terkenal. Tetap hati-hati ya, jangan asal isi Password, PIN, Kode OTP, atau data rekening kalau diminta di website ini.")
+                        reasons.append(f"ℹ️ <b>Domain Belum Terdaftar</b><br><b>Domain yang dicek:</b> {domain}<br><span style='color:#cbd5e1'>Domain ini belum tercatat di database TORANG GUARD dan tidak memiliki kemiripan signifikan dengan domain penipu yang dikenal. Tetap berhati-hati jika situs meminta kata sandi, PIN, kode OTP, atau data rekening.</span>")
             if domain.count('.') >= 3 and not parent_found:
                 score += 20
-                reasons.append(f"⚠️ Subdomain terlalu banyak ({domain}). Hati-hati, domain aslinya bisa jadi yang paling belakang. Contoh: ustj.ac.id.maling.com -> aslinya maling.com, bukan ustj.ac.id")
+                reasons.append(f"⚠️ <b>Struktur Subdomain Berlapis</b><br><b>Domain yang dicek:</b> {domain}<br><span style='color:#fde68a'>Domain memiliki terlalu banyak subdomain. Domain asli dapat dilihat dari bagian paling belakang. Contoh: ustj.ac.id.maling.com - domain aslinya adalah maling.com, bukan ustj.ac.id.</span>")
     if not url.startswith("https://"):
-        score += 10; reasons.append("⚠️ Tidak pakai HTTPS. Website resmi biasanya sudah pakai HTTPS (ada gemboknya).")
+        score += 10; reasons.append("⚠️ <b>Tidak Menggunakan HTTPS</b><br><span style='color:#fde68a'>Situs tidak menggunakan HTTPS. Situs resmi umumnya sudah menggunakan HTTPS (ditandai ikon gembok).</span>")
     else:
-        reasons.append("✅ Sudah pakai HTTPS.")
+        reasons.append("✅ <b>Koneksi Menggunakan HTTPS</b><br><span style='color:#bbf7d0'>Situs sudah menggunakan HTTPS.</span>")
     if deep_check and not is_legit_domain and score < 70:
         c_score, c_reasons, c_inputs = check_website_content(url, domain)
         score += c_score
         reasons.extend(c_reasons)
     elif is_legit_domain:
-        reasons.append("ℹ️ Ini domain resmi yang sudah terdaftar, jadi TORANG GUARD tidak perlu buka isi website-nya lagi. Form login di sini wajar, karena memang tempatnya login.")
+        reasons.append("ℹ️ <b>Domain Resmi Terverifikasi</b><br><span style='color:#cbd5e1'>Domain ini sudah terdaftar sebagai domain resmi, sehingga pemeriksaan isi website tidak diperlukan. Formulir login pada domain ini merupakan hal yang wajar.</span>")
     score = min(score, 100)
     if score >= 70:
         if is_campus:
-            verdict = "SANGAT BERBAHAYA. Jangan diklik. Jangan isi NIM / Password / PIN / Kode OTP di link ini. Kalau sudah terlanjur isi, langsung ganti password dan hubungi kampus / bank / aplikasi resminya."
+            verdict = "SANGAT BERBAHAYA. Jangan akses tautan ini. Jangan masukkan NIM, kata sandi, PIN, atau kode OTP. Jika sudah terlanjur mengisi, segera ganti kata sandi dan hubungi pihak kampus / bank / aplikasi resmi."
         else:
-            verdict = "SANGAT BERBAHAYA. Jangan diklik. Jangan isi Password, PIN, Kode OTP, atau data rekening / kartu ATM di link ini. Kalau sudah terlanjur isi, langsung ganti password dan hubungi bank / aplikasi resminya."
+            verdict = "SANGAT BERBAHAYA. Jangan akses tautan ini. Jangan masukkan kata sandi, PIN, kode OTP, atau data rekening / kartu ATM. Jika sudah terlanjur mengisi, segera ganti kata sandi dan hubungi bank / aplikasi resmi."
     elif score >= 40:
-        verdict = "MENCURIGAKAN. Jangan isi data pribadi dulu. Cek lewat aplikasi resminya langsung (buka aplikasi DANA / BRI / Shopee-nya, jangan lewat link ini), atau tanya ke CS resminya."
+        verdict = "MENCURIGAKAN. Jangan masukkan data pribadi. Verifikasi melalui aplikasi resmi secara langsung (buka aplikasi DANA / BRI / Shopee tanpa melalui tautan ini), atau hubungi layanan pelanggan resmi."
     elif score == 0:
         verdict = "Terlihat AMAN dan terdaftar sebagai domain resmi di TORANG GUARD."
     else:
-        verdict = "Relatif aman, tapi tetap waspada. TORANG GUARD belum kenal domain ini. Kalau website-nya minta Password, PIN, Kode OTP, atau suruh transfer, itu sudah pasti penipuan. Berhenti dan tutup saja."
+        verdict = "Relatif aman, tetapi tetap waspada. TORANG GUARD belum mengenal domain ini. Jika situs meminta kata sandi, PIN, kode OTP, atau meminta transfer, hentikan dan tutup situs tersebut."
     return {"domain": domain, "score": score, "reasons": reasons, "verdict": verdict, "category": category}
 
 @app.route('/')
