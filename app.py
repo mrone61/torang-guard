@@ -54,9 +54,8 @@ GLOBAL_BRANDS = {
     "gmail.com": "Gmail",
     "yahoo.com": "Yahoo",
     "amazon.com": "Amazon",
-    "netflix.com": "Netflix", 
+    "netflix.com": "Netflix",
 }
-
 
 ALL_FOR_TYPO = {**LEGIT_DOMAINS, **GLOBAL_BRANDS}
 
@@ -80,6 +79,45 @@ SENSITIVE_INPUTS_LOOSE = {
 }
 
 PANIC_WORDS = ['segera', 'hangus', 'diblokir', 'blokir', 'terblokir', 'suspended', 'akun anda akan', 'segera verifikasi', 'batas waktu', 'kedaluwarsa', 'expire', 'urgent', 'sekarang juga']
+
+# ===== LOGIKA FUZZY MAMDANI - TORANG GUARD =====
+def fuzz_rendah(x):
+    if x <= 50: return 1.0
+    if x >= 70: return 0.0
+    return (70 - x) / 20
+
+def fuzz_sedang(x):
+    if x <= 60 or x >= 90: return 0.0
+    if x <= 75: return (x - 60) / 15
+    return (90 - x) / 15
+
+def fuzz_tinggi(x):
+    if x <= 80: return 0.0
+    if x >= 95: return 1.0
+    return (x - 80) / 15
+
+def fuzzy_typo_score(similarity_persen, jumlah_kata_mencurigakan, ada_brand):
+    r = fuzz_rendah(similarity_persen)
+    s = fuzz_sedang(similarity_persen)
+    t = fuzz_tinggi(similarity_persen)
+    # ATURAN FUZZY
+    rule1 = t  # Jika mirip TINGGI -> Bahaya TINGGI
+    rule2 = min(s, 1.0 if jumlah_kata_mencurigakan > 0 else 0.0)  # SEDANG + kata mencurigakan -> SEDANG
+    rule3 = min(s, 1.0 if ada_brand else 0.0)  # SEDANG + brand -> TINGGI
+    rule4 = r  # RENDAH -> Aman
+    # DEFUZZIFIKASI - Weighted Average
+    pembilang = (rule4 * 10) + (rule2 * 50) + (max(rule1, rule3) * 90)
+    penyebut = rule4 + rule2 + max(rule1, rule3)
+    if penyebut == 0:
+        return 0, "RENDAH", r, s, t
+    hasil = pembilang / penyebut
+    if hasil >= 70:
+        status = "TINGGI"
+    elif hasil >= 40:
+        status = "SEDANG"
+    else:
+        status = "RENDAH"
+    return hasil, status, r, s, t
 
 def check_website_content(url, domain):
     if requests is None:
@@ -226,20 +264,24 @@ def check_url(raw_url, deep_check=True):
                     best_ratio = ratio; best_match = (legit, name)
             if best_match:
                 legit, name = best_match
-                if best_ratio > 0.82:
+                sim_persen = int(best_ratio * 100)
+                # PANGGIL FUZZY MAMDANI
+                cek_brand = 1 if brand_found else 0
+                fuzzy_skor, fuzzy_status, fr, fs, ft = fuzzy_typo_score(sim_persen, len(found_words), cek_brand)
+                if fuzzy_status == "TINGGI":
                     score += 70
-                    reasons.append(f"⛔<b>TYPO SQUATTING TERDETEKSI</b><br><b>Domain yang dicek:</b> {domain}<br><b>Domain resmi:</b> {legit} ({name})<br><b>Tingkat kemiripan:</b> {int(best_ratio*100)}%<br><span style='color:#fca5a5'>Domain ini meniru domain resmi dengan perbedaan kecil pada penulisan. Teknik ini umum digunakan untuk mengelabui pengguna agar mengira sedang mengakses situs resmi.</span>")
-                elif best_ratio > 0.65:
+                    reasons.append(f"⛔<b>TYPO SQUATTING TERDETEKSI [FUZZY: TINGGI]</b><br><b>Domain yang dicek:</b> {domain}<br><b>Domain resmi:</b> {legit} ({name})<br><b>Tingkat kemiripan:</b> {sim_persen}%<br><b>Derajat Fuzzy - Rendah:</b> {fr:.2f}, <b>Sedang:</b> {fs:.2f}, <b>Tinggi:</b> {ft:.2f}<br><b>Skor Defuzzifikasi:</b> {fuzzy_skor:.1f}<br><span style='color:#fca5a5'>Berdasarkan inferensi Fuzzy Mamdani, domain ini masuk kategori bahaya TINGGI. Domain ini meniru domain resmi dengan perbedaan kecil pada penulisan.</span>")
+                elif fuzzy_status == "SEDANG":
                     score += 30
-                    reasons.append(f"⚠️<b>Kemiripan Domain Terdeteksi</b><br><b>Domain yang dicek:</b> {domain}<br><b>Domain resmi:</b> {legit} ({name})<br><b>Tingkat kemiripan:</b> {int(best_ratio*100)}%<br><span style='color:#fde68a'>Domain ini memiliki kemiripan dengan domain resmi. Periksa kembali penulisan domain sebelum melanjutkan.</span>")
+                    reasons.append(f"⚠️<b>Kemiripan Domain Terdeteksi [FUZZY: SEDANG]</b><br><b>Domain yang dicek:</b> {domain}<br><b>Domain resmi:</b> {legit} ({name})<br><b>Tingkat kemiripan:</b> {sim_persen}%<br><b>Derajat Fuzzy - Rendah:</b> {fr:.2f}, <b>Sedang:</b> {fs:.2f}, <b>Tinggi:</b> {ft:.2f}<br><b>Skor Defuzzifikasi:</b> {fuzzy_skor:.1f}<br><span style='color:#fde68a'>Domain ini memiliki kemiripan sedang dengan domain resmi berdasarkan Logika Fuzzy. Periksa kembali penulisan domain sebelum melanjutkan.</span>")
                 else:
                     if domain.endswith(".ac.id"):
-                        reasons.append(f"✅ <b>Domain Kampus (.ac.id)</b><br><b>Domain yang dicek:</b> {domain}<br><span style='color:#bbf7d0'>Ekstensi .ac.id hanya dapat dimiliki oleh perguruan tinggi resmi di Indonesia melalui PANDI. Kemungkinan besar domain ini asli.</span>")
+                        reasons.append(f"✅ <b>Domain Kampus (.ac.id) [FUZZY: RENDAH]</b><br><b>Domain yang dicek:</b> {domain}<br><b>Kemiripan tertinggi:</b> {sim_persen}% dengan {legit}<br><span style='color:#bbf7d0'>Ekstensi .ac.id hanya dapat dimiliki oleh perguruan tinggi resmi di Indonesia melalui PANDI. Kemungkinan besar domain ini asli.</span>")
                     elif "siakad" in domain and not domain.endswith(".ac.id"):
                         score += 40
                         reasons.append(f"⛔ <b>Portal Akademik Tidak Resmi</b><br><b>Domain yang dicek:</b> {domain}<br><span style='color:#fca5a5'>Domain mengatasnamakan SIAKAD tetapi tidak menggunakan ekstensi .ac.id. Portal akademik resmi selalu menggunakan .ac.id.</span>")
                     else:
-                        reasons.append(f"ℹ️ <b>Domain Belum Terdaftar</b><br><b>Domain yang dicek:</b> {domain}<br><span style='color:#cbd5e1'>Domain ini belum tercatat di database TORANG GUARD dan tidak memiliki kemiripan signifikan dengan domain penipu yang dikenal. Tetap berhati-hati jika situs meminta kata sandi, PIN, kode OTP, atau data rekening.</span>")
+                        reasons.append(f"ℹ️ <b>Domain Belum Terdaftar [FUZZY: RENDAH]</b><br><b>Domain yang dicek:</b> {domain}<br><b>Kemiripan tertinggi:</b> {sim_persen}% dengan {legit}<br><span style='color:#cbd5e1'>Domain ini belum tercatat di database TORANG GUARD dan tidak memiliki kemiripan signifikan dengan domain resmi. Tetap berhati-hati jika situs meminta kata sandi, PIN, kode OTP, atau data rekening.</span>")
             if domain.count('.') >= 3 and not parent_found:
                 score += 20
                 reasons.append(f"⚠️ <b>Struktur Subdomain Berlapis</b><br><b>Domain yang dicek:</b> {domain}<br><span style='color:#fde68a'>Domain memiliki terlalu banyak subdomain. Domain asli dapat dilihat dari bagian paling belakang. Contoh: ustj.ac.id.maling.com - domain aslinya adalah maling.com, bukan ustj.ac.id.</span>")
