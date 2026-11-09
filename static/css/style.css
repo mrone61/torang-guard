@@ -46,6 +46,9 @@ button:active{transform:scale(.98)}
 .aman{background:rgba(0,60,35,.9);border:1px solid #00ff88;padding:16px;border-radius:14px;margin-top:16px;text-align:left}
 .bahaya{background:rgba(60,0,0,.9);border:1px solid #ff4444;padding:16px;border-radius:14px;margin-top:16px;text-align:left}
 .waspada{background:rgba(60,45,0,.9);border:1px solid #ffcc00;padding:16px;border-radius:14px;margin-top:16px;text-align:left}
+/* FIX: Warna baru buat BELUM DIKENAL - Biru, biar beda sama AMAN (ijo) */
+.belum-dikenal{background:rgba(10,30,70,.92);border:1px solid #00e5ff;padding:16px;border-radius:14px;margin-top:16px;text-align:left}
+.info{background:rgba(10,30,70,.92);border:1px solid #00e5ff;padding:16px;border-radius:14px;margin-top:16px;text-align:left}
 .score{font-size:44px;font-weight:900;text-align:center}
 #hasil{text-align:left}
 #hasil table{width:100%;border-collapse:collapse;margin-top:10px;text-align:left}
