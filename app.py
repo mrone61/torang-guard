@@ -57,7 +57,7 @@ GLOBAL_BRANDS = {
     "netflix.com": "Netflix",
 }
 
-# Gabungan buat cek typo: LEGIT + GLOBAL
+
 ALL_FOR_TYPO = {**LEGIT_DOMAINS, **GLOBAL_BRANDS}
 
 BLOCKED_TLDS = ['.xyz', '.top', '.click', '.buzz', '.tk', '.ml', '.ga', '.cf', '.gq']
