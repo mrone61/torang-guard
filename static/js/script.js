@@ -27,7 +27,6 @@ async function cek(){
   }
 }
 
-// Biar bisa tekan Enter di keyboard langsung cek
 document.addEventListener('DOMContentLoaded', () => {
   const input = document.getElementById('url');
   if(input){
