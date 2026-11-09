@@ -16,6 +16,9 @@ except:
 
 app = Flask(__name__)
 
+# WHITELIST - Domain sendiri jangan dicek
+SELF_DOMAINS = ["torang-guard.vercel.app", "torang-guard.onrender.com", "127.0.0.1", "localhost"]
+
 LEGIT_DOMAINS = {
     "ustj.ac.id": "Universitas Sains dan Teknologi Jayapura (USTJ)",
     "siakad.ustj.ac.id": "SIAKAD USTJ - Portal Akademik Resmi USTJ",
@@ -81,8 +84,9 @@ SENSITIVE_INPUTS_STRICT = {
     'pin': 30, 'p1n': 30, 'pin_atm': 30, 'otp': 30, 'kode_otp': 30, 'kode_verifikasi': 25,
     'cvv': 35, 'cvc': 35, 'kk': 20, 'nik': 20, 'ktp': 15,
 }
+# FIX: password dipisah, hanya dihitung kalo type="password", bukan dari kata di teks
 SENSITIVE_INPUTS_LOOSE = {
-    'password': 20, 'passcode': 25, 'kata_sandi': 20, 'kata-sandi': 20, 'sandi': 15,
+    'passcode': 25, 'kata_sandi': 20, 'kata-sandi': 20, 'sandi': 15,
     'rekening': 20, 'nomor_rekening': 20, 'kartu_kredit': 25, 'kartu_atm': 25,
 }
 
@@ -188,15 +192,18 @@ def check_website_content(url, domain):
     found_inputs = {}
     inputs = re.findall(r'<input[^>]+>', html_clean)
     inputs_text = " ".join(inputs)
+    # FIX 1: Hanya hitung password kalo beneran ada <input type="password">
+    if re.search(r'type\s*=\s*["\']password["\']', inputs_text):
+        found_inputs['password'] = 20
+    # STRICT: PIN, OTP, CVV dll - tetap dari name/id/placeholder di input
     for keyword, poin in SENSITIVE_INPUTS_STRICT.items():
         if re.search(r'\b' + re.escape(keyword) + r'\b', inputs_text):
             found_inputs[keyword] = poin
     text_only = re.sub(r'<[^>]+>', ' ', html_clean)
+    # LOOSE: Hanya dari input, JANGAN dari teks bebas (biar gak ngawur)
     for keyword, poin in SENSITIVE_INPUTS_LOOSE.items():
         if re.search(r'\b' + re.escape(keyword) + r'\b', inputs_text):
             found_inputs[keyword] = poin
-        elif re.search(r'\b' + re.escape(keyword) + r'\b', text_only):
-            found_inputs[keyword + "_teks"] = poin // 2
     panic_found = [w for w in PANIC_WORDS if w in text_only]
     if panic_found:
         score_add += 15
@@ -235,6 +242,9 @@ def check_url(raw_url, deep_check=True):
         domain = parsed.netloc.lower().split(':')[0].replace("www.", "")
     except:
         domain = url
+    # FIX 2: Kalo yang dicek domain sendiri, langsung return, jangan di-scan
+    if domain in SELF_DOMAINS:
+        return {"domain": domain, "score": 0, "reasons": ["✅ <b>Ini Domain TORANG GUARD Sendiri</b><br><span style='color:#bbf7d0'>Ini adalah website TORANG GUARD, bukan situs yang perlu dicek. Silakan masukkan tautan lain yang ingin diperiksa.</span>"], "verdict": "Ini adalah domain TORANG GUARD sendiri.", "category": "Sistem TORANG GUARD"}
     score = 0; reasons = []; category = "Tidak Dikenal / Umum"
     ciri_score = 0
     is_campus = domain.endswith(".ac.id") or "siakad" in domain or "in8" in domain
@@ -253,6 +263,8 @@ def check_url(raw_url, deep_check=True):
         category = "Portal Akademik SIAKAD"
     elif "in8" in domain:
         category = "Portal Akademik IN8"
+    elif domain.endswith(".vercel.app"):
+        category = "Hosting Vercel (Perlu Dicek Lebih Lanjut)"
     tld_blocked = False
     for tld in BLOCKED_TLDS:
         if domain.endswith(tld):
@@ -337,7 +349,6 @@ def check_url(raw_url, deep_check=True):
             if domain.count('.') >= 3 and not parent_found:
                 score += 20
                 reasons.append(f"⚠️ <b>Struktur Subdomain Berlapis</b><br><b>Domain yang dicek:</b> {domain}<br><span style='color:#fde68a'>Domain memiliki terlalu banyak subdomain. Domain asli dapat dilihat dari bagian paling belakang. Contoh: ustj.ac.id.maling.com - domain aslinya adalah maling.com, bukan ustj.ac.id.</span>")
-    # CEK WHOIS - Hanya untuk domain tidak resmi, biar tidak lambat
     if not is_legit_domain:
         umur_domain, whois_skor, whois_pesan = check_domain_age(domain)
         if whois_skor > 0:
