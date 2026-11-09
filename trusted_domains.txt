@@ -1,0 +1,761 @@
+facebook.com|Global - Facebook
+instagram.com|Global - Instagram
+google.com|Global - Google
+youtube.com|Global - YouTube
+tiktok.com|Global - TikTok
+whatsapp.com|Global - WhatsApp
+x.com|Global - X Twitter
+gmail.com|Global - Gmail
+yahoo.com|Global - Yahoo
+amazon.com|Global - Amazon
+netflix.com|Global - Netflix
+paypal.com|Global - PayPal
+apple.com|Global - Apple
+microsoft.com|Global - Microsoft
+binance.com|Global - Binance
+linkedin.com|Global - LinkedIn
+pinterest.com|Global - Pinterest
+snapchat.com|Global - Snapchat
+telegram.org|Global - Telegram
+zoom.us|Global - Zoom
+dropbox.com|Global - Dropbox
+spotify.com|Global - Spotify
+booking.com|Global - Booking.com
+airbnb.com|Global - Airbnb
+agoda.com|Global - Agoda
+kemdikbud.go.id|Pemerintahan - Kementerian Pendidikan
+kemendagri.go.id|Pemerintahan - Kementerian Dalam Negeri
+kemkes.go.id|Pemerintahan - Kementerian Kesehatan
+kemkominfo.go.id|Pemerintahan - Kementerian Kominfo
+kemenkeu.go.id|Pemerintahan - Kementerian Keuangan
+kemensos.go.id|Pemerintahan - Kementerian Sosial
+kemendesa.go.id|Pemerintahan - Kementerian Desa
+kemenag.go.id|Pemerintahan - Kementerian Agama
+kemenkumham.go.id|Pemerintahan - Kementerian Hukum dan HAM
+kementan.go.id|Pemerintahan - Kementerian Pertanian
+kkp.go.id|Pemerintahan - Kementerian Kelautan dan Perikanan
+kemenparekraf.go.id|Pemerintahan - Kementerian Pariwisata
+kemendag.go.id|Pemerintahan - Kementerian Perdagangan
+kemenperin.go.id|Pemerintahan - Kementerian Perindustrian
+kemenhub.go.id|Pemerintahan - Kementerian Perhubungan
+kemenpupr.go.id|Pemerintahan - Kementerian PUPR
+kemnaker.go.id|Pemerintahan - Kementerian Ketenagakerjaan
+kemenkopukm.go.id|Pemerintahan - Kementerian Koperasi dan UKM
+kemenpora.go.id|Pemerintahan - Kementerian Pemuda dan Olahraga
+kemenpppa.go.id|Pemerintahan - Kementerian PPPA
+klhk.go.id|Pemerintahan - Kementerian LHK
+esdm.go.id|Pemerintahan - Kementerian ESDM
+setneg.go.id|Pemerintahan - Sekretariat Negara
+setkab.go.id|Pemerintahan - Sekretariat Kabinet
+dpr.go.id|Pemerintahan - DPR RI
+mpr.go.id|Pemerintahan - MPR RI
+dpd.go.id|Pemerintahan - DPD RI
+mahkamahagung.go.id|Hukum - Mahkamah Agung RI
+mkri.id|Hukum - Mahkamah Konstitusi RI
+ky.go.id|Hukum - Komisi Yudisial
+bpk.go.id|Pemerintahan - BPK RI
+kpu.go.id|Pemerintahan - KPU RI
+bawaslu.go.id|Pemerintahan - Bawaslu RI
+kpk.go.id|Hukum - KPK RI
+kejaksaan.go.id|Hukum - Kejaksaan Agung RI
+polri.go.id|Keamanan - Polri
+tni.mil.id|Keamanan - TNI
+tni-ad.mil.id|Keamanan - TNI AD
+tni-al.mil.id|Keamanan - TNI AL
+tni-au.mil.id|Keamanan - TNI AU
+bin.go.id|Keamanan - BIN
+bnn.go.id|Keamanan - BNN
+bnpt.go.id|Keamanan - BNPT
+basarnas.go.id|Keamanan - Basarnas
+bmkg.go.id|Pemerintahan - BMKG
+bnpb.go.id|Pemerintahan - BNPB
+bpjs-kesehatan.go.id|Kesehatan - BPJS Kesehatan
+bpjsketenagakerjaan.go.id|Ketenagakerjaan - BPJS Ketenagakerjaan
+aceh.go.id|Pemerintahan Daerah - Pemprov Aceh
+sumutprov.go.id|Pemerintahan Daerah - Pemprov Sumut
+sumbarprov.go.id|Pemerintahan Daerah - Pemprov Sumbar
+riau.go.id|Pemerintahan Daerah - Pemprov Riau
+jambi.go.id|Pemerintahan Daerah - Pemprov Jambi
+sumselprov.go.id|Pemerintahan Daerah - Pemprov Sumsel
+bengkulu.go.id|Pemerintahan Daerah - Pemprov Bengkulu
+lampung.go.id|Pemerintahan Daerah - Pemprov Lampung
+babelprov.go.id|Pemerintahan Daerah - Pemprov Babel
+kepri.go.id|Pemerintahan Daerah - Pemprov Kepri
+jakarta.go.id|Pemerintahan Daerah - Pemprov DKI Jakarta
+jabarprov.go.id|Pemerintahan Daerah - Pemprov Jabar
+jatengprov.go.id|Pemerintahan Daerah - Pemprov Jateng
+jogjaprov.go.id|Pemerintahan Daerah - Pemprov DIY
+jatimprov.go.id|Pemerintahan Daerah - Pemprov Jatim
+bantenprov.go.id|Pemerintahan Daerah - Pemprov Banten
+baliprov.go.id|Pemerintahan Daerah - Pemprov Bali
+ntbprov.go.id|Pemerintahan Daerah - Pemprov NTB
+nttprov.go.id|Pemerintahan Daerah - Pemprov NTT
+kalbarprov.go.id|Pemerintahan Daerah - Pemprov Kalbar
+kalteng.go.id|Pemerintahan Daerah - Pemprov Kalteng
+kalselprov.go.id|Pemerintahan Daerah - Pemprov Kalsel
+kaltimprov.go.id|Pemerintahan Daerah - Pemprov Kaltim
+kaltara.go.id|Pemerintahan Daerah - Pemprov Kaltara
+sulutprov.go.id|Pemerintahan Daerah - Pemprov Sulut
+sultengprov.go.id|Pemerintahan Daerah - Pemprov Sulteng
+sulselprov.go.id|Pemerintahan Daerah - Pemprov Sulsel
+sultraprov.go.id|Pemerintahan Daerah - Pemprov Sultra
+gorontaloprov.go.id|Pemerintahan Daerah - Pemprov Gorontalo
+sulbarprov.go.id|Pemerintahan Daerah - Pemprov Sulbar
+malukuprov.go.id|Pemerintahan Daerah - Pemprov Maluku
+malutprov.go.id|Pemerintahan Daerah - Pemprov Malut
+papua.go.id|Pemerintahan Daerah - Pemprov Papua
+papuabarat.go.id|Pemerintahan Daerah - Pemprov Papua Barat
+papuapegunungan.go.id|Pemerintahan Daerah - Pemprov Papua Pegunungan
+papuatengah.go.id|Pemerintahan Daerah - Pemprov Papua Tengah
+papuaselatan.go.id|Pemerintahan Daerah - Pemprov Papua Selatan
+papuabaratdaya.go.id|Pemerintahan Daerah - Pemprov Papua Barat Daya
+bandaaceh.go.id|Pemerintahan Daerah - Pemkot Banda Aceh
+acehbesar.go.id|Pemerintahan Daerah - Pemkab Aceh Besar
+acehtamiang.go.id|Pemerintahan Daerah - Pemkab Aceh Tamiang
+acehtengah.go.id|Pemerintahan Daerah - Pemkab Aceh Tengah
+acehutara.go.id|Pemerintahan Daerah - Pemkab Aceh Utara
+acehjaya.go.id|Pemerintahan Daerah - Pemkab Aceh Jaya
+acehbarat.go.id|Pemerintahan Daerah - Pemkab Aceh Barat
+acehselatan.go.id|Pemerintahan Daerah - Pemkab Aceh Selatan
+acehtenggara.go.id|Pemerintahan Daerah - Pemkab Aceh Tenggara
+acehtimur.go.id|Pemerintahan Daerah - Pemkab Aceh Timur
+acehbaratdaya.go.id|Pemerintahan Daerah - Pemkab Aceh Barat Daya
+bener-meriah.go.id|Pemerintahan Daerah - Pemkab Bener Meriah
+bireuen.go.id|Pemerintahan Daerah - Pemkab Bireuen
+gayo-lues.go.id|Pemerintahan Daerah - Pemkab Gayo Lues
+langsa.go.id|Pemerintahan Daerah - Pemkot Langsa
+lhokseumawe.go.id|Pemerintahan Daerah - Pemkot Lhokseumawe
+pidie.go.id|Pemerintahan Daerah - Pemkab Pidie
+pidiejaya.go.id|Pemerintahan Daerah - Pemkab Pidie Jaya
+sabangkota.go.id|Pemerintahan Daerah - Pemkot Sabang
+simeulue.go.id|Pemerintahan Daerah - Pemkab Simeulue
+subulussalam.go.id|Pemerintahan Daerah - Pemkot Subulussalam
+medan.go.id|Pemerintahan Daerah - Pemkot Medan
+binjai.go.id|Pemerintahan Daerah - Pemkot Binjai
+tebingtinggi.go.id|Pemerintahan Daerah - Pemkot Tebing Tinggi
+pematangsiantar.go.id|Pemerintahan Daerah - Pemkot Pematang Siantar
+padangsidimpuan.go.id|Pemerintahan Daerah - Pemkot Padang Sidimpuan
+gunungsitoli.go.id|Pemerintahan Daerah - Pemkot Gunungsitoli
+deliserdang.go.id|Pemerintahan Daerah - Pemkab Deli Serdang
+langkat.go.id|Pemerintahan Daerah - Pemkab Langkat
+karokab.go.id|Pemerintahan Daerah - Pemkab Karo
+simalungun.go.id|Pemerintahan Daerah - Pemkab Simalungun
+batubara.go.id|Pemerintahan Daerah - Pemkab Batu Bara
+labuhanbatu.go.id|Pemerintahan Daerah - Pemkab Labuhan Batu
+mandailingnatal.go.id|Pemerintahan Daerah - Pemkab Mandailing Natal
+tapanuliutara.go.id|Pemerintahan Daerah - Pemkab Tapanuli Utara
+tapanuliselatan.go.id|Pemerintahan Daerah - Pemkab Tapanuli Selatan
+tapanulitengah.go.id|Pemerintahan Daerah - Pemkab Tapanuli Tengah
+toba.go.id|Pemerintahan Daerah - Pemkab Toba
+padang.go.id|Pemerintahan Daerah - Pemkot Padang
+bukittinggi.go.id|Pemerintahan Daerah - Pemkot Bukittinggi
+payakumbuh.go.id|Pemerintahan Daerah - Pemkot Payakumbuh
+sawahlunto.go.id|Pemerintahan Daerah - Pemkot Sawahlunto
+solok.go.id|Pemerintahan Daerah - Pemkot Solok
+padangpanjang.go.id|Pemerintahan Daerah - Pemkot Padang Panjang
+pariaman.go.id|Pemerintahan Daerah - Pemkot Pariaman
+pekanbaru.go.id|Pemerintahan Daerah - Pemkot Pekanbaru
+dumai.go.id|Pemerintahan Daerah - Pemkot Dumai
+bengkalis.go.id|Pemerintahan Daerah - Pemkab Bengkalis
+indragirihilir.go.id|Pemerintahan Daerah - Pemkab Indragiri Hilir
+indragirihulu.go.id|Pemerintahan Daerah - Pemkab Indragiri Hulu
+kampar.go.id|Pemerintahan Daerah - Pemkab Kampar
+kuansing.go.id|Pemerintahan Daerah - Pemkab Kuantan Singingi
+pelalawan.go.id|Pemerintahan Daerah - Pemkab Pelalawan
+rohil.go.id|Pemerintahan Daerah - Pemkab Rokan Hilir
+rohulu.go.id|Pemerintahan Daerah - Pemkab Rokan Hulu
+siak.go.id|Pemerintahan Daerah - Pemkab Siak
+jambi.go.id|Pemerintahan Daerah - Pemkot Jambi
+sungaipenuh.go.id|Pemerintahan Daerah - Pemkot Sungai Penuh
+batanghari.go.id|Pemerintahan Daerah - Pemkab Batang Hari
+bungo.go.id|Pemerintahan Daerah - Pemkab Bungo
+kerinci.go.id|Pemerintahan Daerah - Pemkab Kerinci
+merangin.go.id|Pemerintahan Daerah - Pemkab Merangin
+muarojambi.go.id|Pemerintahan Daerah - Pemkab Muaro Jambi
+sarolangun.go.id|Pemerintahan Daerah - Pemkab Sarolangun
+tanjabbar.go.id|Pemerintahan Daerah - Pemkab Tanjung Jabung Barat
+tanjabtim.go.id|Pemerintahan Daerah - Pemkab Tanjung Jabung Timur
+tebo.go.id|Pemerintahan Daerah - Pemkab Tebo
+palembang.go.id|Pemerintahan Daerah - Pemkot Palembang
+lubuklinggau.go.id|Pemerintahan Daerah - Pemkot Lubuk Linggau
+pagaralam.go.id|Pemerintahan Daerah - Pemkot Pagar Alam
+prabumulih.go.id|Pemerintahan Daerah - Pemkot Prabumulih
+banyuasin.go.id|Pemerintahan Daerah - Pemkab Banyuasin
+empatlawang.go.id|Pemerintahan Daerah - Pemkab Empat Lawang
+lahat.go.id|Pemerintahan Daerah - Pemkab Lahat
+muaraenim.go.id|Pemerintahan Daerah - Pemkab Muara Enim
+musirawas.go.id|Pemerintahan Daerah - Pemkab Musi Rawas
+musirawasutara.go.id|Pemerintahan Daerah - Pemkab Musi Rawas Utara
+oganilir.go.id|Pemerintahan Daerah - Pemkab Ogan Ilir
+ogankomeringilir.go.id|Pemerintahan Daerah - Pemkab Ogan Komering Ilir
+ogankomeringulu.go.id|Pemerintahan Daerah - Pemkab Ogan Komering Ulu
+ogankomeringuluselatan.go.id|Pemerintahan Daerah - Pemkab OKU Selatan
+ogankomeringulutimur.go.id|Pemerintahan Daerah - Pemkab OKU Timur
+penukalabablematang.go.id|Pemerintahan Daerah - Pemkab Penukal Abab Lematang Ilir
+bengkulu.go.id|Pemerintahan Daerah - Pemkot Bengkulu
+bengkuluselatan.go.id|Pemerintahan Daerah - Pemkab Bengkulu Selatan
+bengkuluutara.go.id|Pemerintahan Daerah - Pemkab Bengkulu Utara
+bengkulu-tengah.go.id|Pemerintahan Daerah - Pemkab Bengkulu Tengah
+kaur.go.id|Pemerintahan Daerah - Pemkab Kaur
+kepahiang.go.id|Pemerintahan Daerah - Pemkab Kepahiang
+lebong.go.id|Pemerintahan Daerah - Pemkab Lebong
+mukomuko.go.id|Pemerintahan Daerah - Pemkab Mukomuko
+rejanglebong.go.id|Pemerintahan Daerah - Pemkab Rejang Lebong
+seluma.go.id|Pemerintahan Daerah - Pemkab Seluma
+bandarlampung.go.id|Pemerintahan Daerah - Pemkot Bandar Lampung
+metro.go.id|Pemerintahan Daerah - Pemkot Metro
+lampungbarat.go.id|Pemerintahan Daerah - Pemkab Lampung Barat
+lampungselatan.go.id|Pemerintahan Daerah - Pemkab Lampung Selatan
+lampungtengah.go.id|Pemerintahan Daerah - Pemkab Lampung Tengah
+lampungtimur.go.id|Pemerintahan Daerah - Pemkab Lampung Timur
+lampungutara.go.id|Pemerintahan Daerah - Pemkab Lampung Utara
+mesuji.go.id|Pemerintahan Daerah - Pemkab Mesuji
+pesawaran.go.id|Pemerintahan Daerah - Pemkab Pesawaran
+pesisirbarat.go.id|Pemerintahan Daerah - Pemkab Pesisir Barat
+pringsewu.go.id|Pemerintahan Daerah - Pemkab Pringsewu
+tanggamus.go.id|Pemerintahan Daerah - Pemkab Tanggamus
+tulangbawang.go.id|Pemerintahan Daerah - Pemkab Tulang Bawang
+tulangbawangbarat.go.id|Pemerintahan Daerah - Pemkab Tulang Bawang Barat
+waykanan.go.id|Pemerintahan Daerah - Pemkab Way Kanan
+pangkalpinang.go.id|Pemerintahan Daerah - Pemkot Pangkal Pinang
+bangkabarat.go.id|Pemerintahan Daerah - Pemkab Bangka Barat
+bangka.go.id|Pemerintahan Daerah - Pemkab Bangka
+bangkatengah.go.id|Pemerintahan Daerah - Pemkab Bangka Tengah
+bangkaselatan.go.id|Pemerintahan Daerah - Pemkab Bangka Selatan
+belitung.go.id|Pemerintahan Daerah - Pemkab Belitung
+belitungtimur.go.id|Pemerintahan Daerah - Pemkab Belitung Timur
+tanjungpinang.go.id|Pemerintahan Daerah - Pemkot Tanjung Pinang
+batam.go.id|Pemerintahan Daerah - Pemkot Batam
+bintan.go.id|Pemerintahan Daerah - Pemkab Bintan
+karimun.go.id|Pemerintahan Daerah - Pemkab Karimun
+lingga.go.id|Pemerintahan Daerah - Pemkab Lingga
+natuna.go.id|Pemerintahan Daerah - Pemkab Natuna
+anambas.go.id|Pemerintahan Daerah - Pemkab Kepulauan Anambas
+jakartatimur.go.id|Pemerintahan Daerah - Pemkot Jakarta Timur
+jakartabarat.go.id|Pemerintahan Daerah - Pemkot Jakarta Barat
+jakartaselatan.go.id|Pemerintahan Daerah - Pemkot Jakarta Selatan
+jakartautara.go.id|Pemerintahan Daerah - Pemkot Jakarta Utara
+jakartapusat.go.id|Pemerintahan Daerah - Pemkot Jakarta Pusat
+kepulauanseribu.go.id|Pemerintahan Daerah - Pemkab Kepulauan Seribu
+bandung.go.id|Pemerintahan Daerah - Pemkot Bandung
+cimahi.go.id|Pemerintahan Daerah - Pemkot Cimahi
+bogor.go.id|Pemerintahan Daerah - Pemkot Bogor
+bekasi.go.id|Pemerintahan Daerah - Pemkot Bekasi
+depok.go.id|Pemerintahan Daerah - Pemkot Depok
+cirebon.go.id|Pemerintahan Daerah - Pemkot Cirebon
+sukabumi.go.id|Pemerintahan Daerah - Pemkot Sukabumi
+tasikmalaya.go.id|Pemerintahan Daerah - Pemkot Tasikmalaya
+banjar.go.id|Pemerintahan Daerah - Pemkot Banjar
+bandungbarat.go.id|Pemerintahan Daerah - Pemkab Bandung Barat
+garut.go.id|Pemerintahan Daerah - Pemkab Garut
+cianjur.go.id|Pemerintahan Daerah - Pemkab Cianjur
+karawang.go.id|Pemerintahan Daerah - Pemkab Karawang
+purwakarta.go.id|Pemerintahan Daerah - Pemkab Purwakarta
+subang.go.id|Pemerintahan Daerah - Pemkab Subang
+indramayu.go.id|Pemerintahan Daerah - Pemkab Indramayu
+majalengka.go.id|Pemerintahan Daerah - Pemkab Majalengka
+kuningan.go.id|Pemerintahan Daerah - Pemkab Kuningan
+sumedang.go.id|Pemerintahan Daerah - Pemkab Sumedang
+tasikmalayakab.go.id|Pemerintahan Daerah - Pemkab Tasikmalaya
+ciamis.go.id|Pemerintahan Daerah - Pemkab Ciamis
+pangandaran.go.id|Pemerintahan Daerah - Pemkab Pangandaran
+semarang.go.id|Pemerintahan Daerah - Pemkot Semarang
+surakarta.go.id|Pemerintahan Daerah - Pemkot Surakarta
+salatiga.go.id|Pemerintahan Daerah - Pemkot Salatiga
+magelang.go.id|Pemerintahan Daerah - Pemkot Magelang
+pekalongan.go.id|Pemerintahan Daerah - Pemkot Pekalongan
+tegal.go.id|Pemerintahan Daerah - Pemkot Tegal
+yogyakarta.go.id|Pemerintahan Daerah - Pemkot Yogyakarta
+surabaya.go.id|Pemerintahan Daerah - Pemkot Surabaya
+malang.go.id|Pemerintahan Daerah - Pemkot Malang
+batu.go.id|Pemerintahan Daerah - Pemkot Batu
+madiun.go.id|Pemerintahan Daerah - Pemkot Madiun
+mojokerto.go.id|Pemerintahan Daerah - Pemkot Mojokerto
+pasuruan.go.id|Pemerintahan Daerah - Pemkot Pasuruan
+probolinggo.go.id|Pemerintahan Daerah - Pemkot Probolinggo
+kediri.go.id|Pemerintahan Daerah - Pemkot Kediri
+blitar.go.id|Pemerintahan Daerah - Pemkot Blitar
+jember.go.id|Pemerintahan Daerah - Pemkab Jember
+banyuwangi.go.id|Pemerintahan Daerah - Pemkab Banyuwangi
+bondowoso.go.id|Pemerintahan Daerah - Pemkab Bondowoso
+situbondo.go.id|Pemerintahan Daerah - Pemkab Situbondo
+lumajang.go.id|Pemerintahan Daerah - Pemkab Lumajang
+bangkalan.go.id|Pemerintahan Daerah - Pemkab Bangkalan
+sampang.go.id|Pemerintahan Daerah - Pemkab Sampang
+pamekasan.go.id|Pemerintahan Daerah - Pemkab Pamekasan
+sumenep.go.id|Pemerintahan Daerah - Pemkab Sumenep
+gresik.go.id|Pemerintahan Daerah - Pemkab Gresik
+sidoarjo.go.id|Pemerintahan Daerah - Pemkab Sidoarjo
+lamongan.go.id|Pemerintahan Daerah - Pemkab Lamongan
+tuban.go.id|Pemerintahan Daerah - Pemkab Tuban
+bojonegoro.go.id|Pemerintahan Daerah - Pemkab Bojonegoro
+nganjuk.go.id|Pemerintahan Daerah - Pemkab Nganjuk
+madiunkab.go.id|Pemerintahan Daerah - Pemkab Madiun
+magetan.go.id|Pemerintahan Daerah - Pemkab Magetan
+ngawi.go.id|Pemerintahan Daerah - Pemkab Ngawi
+pacitan.go.id|Pemerintahan Daerah - Pemkab Pacitan
+ponorogo.go.id|Pemerintahan Daerah - Pemkab Ponorogo
+trenggalek.go.id|Pemerintahan Daerah - Pemkab Trenggalek
+tulungagung.go.id|Pemerintahan Daerah - Pemkab Tulungagung
+blitarkab.go.id|Pemerintahan Daerah - Pemkab Blitar
+kedirikab.go.id|Pemerintahan Daerah - Pemkab Kediri
+malangkab.go.id|Pemerintahan Daerah - Pemkab Malang
+jombang.go.id|Pemerintahan Daerah - Pemkab Jombang
+serang.go.id|Pemerintahan Daerah - Pemkot Serang
+cilegon.go.id|Pemerintahan Daerah - Pemkot Cilegon
+tangerang.go.id|Pemerintahan Daerah - Pemkot Tangerang
+tangerangselatan.go.id|Pemerintahan Daerah - Pemkot Tangerang Selatan
+denpasar.go.id|Pemerintahan Daerah - Pemkot Denpasar
+badung.go.id|Pemerintahan Daerah - Pemkab Badung
+gianyar.go.id|Pemerintahan Daerah - Pemkab Gianyar
+klungkung.go.id|Pemerintahan Daerah - Pemkab Klungkung
+bangli.go.id|Pemerintahan Daerah - Pemkab Bangli
+buleleng.go.id|Pemerintahan Daerah - Pemkab Buleleng
+jembrana.go.id|Pemerintahan Daerah - Pemkab Jembrana
+tabanan.go.id|Pemerintahan Daerah - Pemkab Tabanan
+karangasem.go.id|Pemerintahan Daerah - Pemkab Karangasem
+mataram.go.id|Pemerintahan Daerah - Pemkot Mataram
+bima.go.id|Pemerintahan Daerah - Pemkot Bima
+lombokbarat.go.id|Pemerintahan Daerah - Pemkab Lombok Barat
+lomboktengah.go.id|Pemerintahan Daerah - Pemkab Lombok Tengah
+lomboktimur.go.id|Pemerintahan Daerah - Pemkab Lombok Timur
+lombokutara.go.id|Pemerintahan Daerah - Pemkab Lombok Utara
+sumbawa.go.id|Pemerintahan Daerah - Pemkab Sumbawa
+sumbawabarat.go.id|Pemerintahan Daerah - Pemkab Sumbawa Barat
+dompu.go.id|Pemerintahan Daerah - Pemkab Dompu
+kupang.go.id|Pemerintahan Daerah - Pemkot Kupang
+belu.go.id|Pemerintahan Daerah - Pemkab Belu
+malaka.go.id|Pemerintahan Daerah - Pemkab Malaka
+timortengahselatan.go.id|Pemerintahan Daerah - Pemkab Timor Tengah Selatan
+timortengahutara.go.id|Pemerintahan Daerah - Pemkab Timor Tengah Utara
+kupangkab.go.id|Pemerintahan Daerah - Pemkab Kupang
+rote-ndao.go.id|Pemerintahan Daerah - Pemkab Rote Ndao
+sabu-raijua.go.id|Pemerintahan Daerah - Pemkab Sabu Raijua
+alor.go.id|Pemerintahan Daerah - Pemkab Alor
+lembata.go.id|Pemerintahan Daerah - Pemkab Lembata
+flores-timur.go.id|Pemerintahan Daerah - Pemkab Flores Timur
+sikka.go.id|Pemerintahan Daerah - Pemkab Sikka
+ende.go.id|Pemerintahan Daerah - Pemkab Ende
+ngada.go.id|Pemerintahan Daerah - Pemkab Ngada
+nagekeo.go.id|Pemerintahan Daerah - Pemkab Nagekeo
+manggarai.go.id|Pemerintahan Daerah - Pemkab Manggarai
+manggaraitimur.go.id|Pemerintahan Daerah - Pemkab Manggarai Timur
+manggarai-barat.go.id|Pemerintahan Daerah - Pemkab Manggarai Barat
+sumba-timur.go.id|Pemerintahan Daerah - Pemkab Sumba Timur
+sumba-barat.go.id|Pemerintahan Daerah - Pemkab Sumba Barat
+sumba-barat-daya.go.id|Pemerintahan Daerah - Pemkab Sumba Barat Daya
+sumba-tengah.go.id|Pemerintahan Daerah - Pemkab Sumba Tengah
+pontianak.go.id|Pemerintahan Daerah - Pemkot Pontianak
+singkawang.go.id|Pemerintahan Daerah - Pemkot Singkawang
+sambas.go.id|Pemerintahan Daerah - Pemkab Sambas
+bengkayang.go.id|Pemerintahan Daerah - Pemkab Bengkayang
+landak.go.id|Pemerintahan Daerah - Pemkab Landak
+sanggau.go.id|Pemerintahan Daerah - Pemkab Sanggau
+sekadau.go.id|Pemerintahan Daerah - Pemkab Sekadau
+sintang.go.id|Pemerintahan Daerah - Pemkab Sintang
+melawi.go.id|Pemerintahan Daerah - Pemkab Melawi
+kapuashulu.go.id|Pemerintahan Daerah - Pemkab Kapuas Hulu
+ketapang.go.id|Pemerintahan Daerah - Pemkab Ketapang
+kayongutara.go.id|Pemerintahan Daerah - Pemkab Kayong Utara
+kuburaya.go.id|Pemerintahan Daerah - Pemkab Kubu Raya
+palangkaraya.go.id|Pemerintahan Daerah - Pemkot Palangka Raya
+baritoutara.go.id|Pemerintahan Daerah - Pemkab Barito Utara
+baritoselatan.go.id|Pemerintahan Daerah - Pemkab Barito Selatan
+baritotimur.go.id|Pemerintahan Daerah - Pemkab Barito Timur
+kapuas.go.id|Pemerintahan Daerah - Pemkab Kapuas
+katingan.go.id|Pemerintahan Daerah - Pemkab Katingan
+kotawaringinbarat.go.id|Pemerintahan Daerah - Pemkab Kotawaringin Barat
+kotawaringintimur.go.id|Pemerintahan Daerah - Pemkab Kotawaringin Timur
+lamandau.go.id|Pemerintahan Daerah - Pemkab Lamandau
+murungraya.go.id|Pemerintahan Daerah - Pemkab Murung Raya
+pulangpisau.go.id|Pemerintahan Daerah - Pemkab Pulang Pisau
+seruyan.go.id|Pemerintahan Daerah - Pemkab Seruyan
+sukamara.go.id|Pemerintahan Daerah - Pemkab Sukamara
+banjarmasin.go.id|Pemerintahan Daerah - Pemkot Banjarmasin
+banjarbaru.go.id|Pemerintahan Daerah - Pemkot Banjarbaru
+banjar.go.id|Pemerintahan Daerah - Pemkab Banjar
+baritokuala.go.id|Pemerintahan Daerah - Pemkab Barito Kuala
+balangan.go.id|Pemerintahan Daerah - Pemkab Balangan
+hulusungaiselatan.go.id|Pemerintahan Daerah - Pemkab Hulu Sungai Selatan
+hulusungaitengah.go.id|Pemerintahan Daerah - Pemkab Hulu Sungai Tengah
+hulusungaiutara.go.id|Pemerintahan Daerah - Pemkab Hulu Sungai Utara
+kotabaru.go.id|Pemerintahan Daerah - Pemkab Kotabaru
+tabalong.go.id|Pemerintahan Daerah - Pemkab Tabalong
+tanahbumbu.go.id|Pemerintahan Daerah - Pemkab Tanah Bumbu
+tanahlaut.go.id|Pemerintahan Daerah - Pemkab Tanah Laut
+tapin.go.id|Pemerintahan Daerah - Pemkab Tapin
+samarinda.go.id|Pemerintahan Daerah - Pemkot Samarinda
+balikpapan.go.id|Pemerintahan Daerah - Pemkot Balikpapan
+bontang.go.id|Pemerintahan Daerah - Pemkot Bontang
+kutai-kartanegara.go.id|Pemerintahan Daerah - Pemkab Kutai Kartanegara
+kutaibarat.go.id|Pemerintahan Daerah - Pemkab Kutai Barat
+kutaitimur.go.id|Pemerintahan Daerah - Pemkab Kutai Timur
+berau.go.id|Pemerintahan Daerah - Pemkab Berau
+paser.go.id|Pemerintahan Daerah - Pemkab Paser
+penajam-paser-utara.go.id|Pemerintahan Daerah - Pemkab Penajam Paser Utara
+mahakamulu.go.id|Pemerintahan Daerah - Pemkab Mahakam Ulu
+tarakan.go.id|Pemerintahan Daerah - Pemkot Tarakan
+bulungan.go.id|Pemerintahan Daerah - Pemkab Bulungan
+malinau.go.id|Pemerintahan Daerah - Pemkab Malinau
+nunukan.go.id|Pemerintahan Daerah - Pemkab Nunukan
+tana-tidung.go.id|Pemerintahan Daerah - Pemkab Tana Tidung
+manado.go.id|Pemerintahan Daerah - Pemkot Manado
+bitung.go.id|Pemerintahan Daerah - Pemkot Bitung
+tomohon.go.id|Pemerintahan Daerah - Pemkot Tomohon
+kotamobagu.go.id|Pemerintahan Daerah - Pemkot Kotamobagu
+bolaang-mongondow.go.id|Pemerintahan Daerah - Pemkab Bolaang Mongondow
+bolaang-mongondow-timur.go.id|Pemerintahan Daerah - Pemkab Bolaang Mongondow Timur
+bolaang-mongondow-selatan.go.id|Pemerintahan Daerah - Pemkab Bolaang Mongondow Selatan
+bolaang-mongondow-utara.go.id|Pemerintahan Daerah - Pemkab Bolaang Mongondow Utara
+kepulauan-sangihe.go.id|Pemerintahan Daerah - Pemkab Kepulauan Sangihe
+kepulauan-talaud.go.id|Pemerintahan Daerah - Pemkab Kepulauan Talaud
+kepulauan-siau-tagulandang-biaro.go.id|Pemerintahan Daerah - Pemkab Siau Tagulandang Biaro
+minahasa.go.id|Pemerintahan Daerah - Pemkab Minahasa
+minahasa-selatan.go.id|Pemerintahan Daerah - Pemkab Minahasa Selatan
+minahasa-utara.go.id|Pemerintahan Daerah - Pemkab Minahasa Utara
+minahasa-tenggara.go.id|Pemerintahan Daerah - Pemkab Minahasa Tenggara
+palu.go.id|Pemerintahan Daerah - Pemkot Palu
+banggai.go.id|Pemerintahan Daerah - Pemkab Banggai
+banggai-kepulauan.go.id|Pemerintahan Daerah - Pemkab Banggai Kepulauan
+banggai-laut.go.id|Pemerintahan Daerah - Pemkab Banggai Laut
+buol.go.id|Pemerintahan Daerah - Pemkab Buol
+donggala.go.id|Pemerintahan Daerah - Pemkab Donggala
+morowali.go.id|Pemerintahan Daerah - Pemkab Morowali
+morowali-utara.go.id|Pemerintahan Daerah - Pemkab Morowali Utara
+poso.go.id|Pemerintahan Daerah - Pemkab Poso
+sigi.go.id|Pemerintahan Daerah - Pemkab Sigi
+toli-toli.go.id|Pemerintahan Daerah - Pemkab Toli-Toli
+tojo-una-una.go.id|Pemerintahan Daerah - Pemkab Tojo Una-Una
+parigi-moutong.go.id|Pemerintahan Daerah - Pemkab Parigi Moutong
+makassar.go.id|Pemerintahan Daerah - Pemkot Makassar
+parepare.go.id|Pemerintahan Daerah - Pemkot Parepare
+palopo.go.id|Pemerintahan Daerah - Pemkot Palopo
+bantaeng.go.id|Pemerintahan Daerah - Pemkab Bantaeng
+barru.go.id|Pemerintahan Daerah - Pemkab Barru
+bone.go.id|Pemerintahan Daerah - Pemkab Bone
+bulukumba.go.id|Pemerintahan Daerah - Pemkab Bulukumba
+enrekang.go.id|Pemerintahan Daerah - Pemkab Enrekang
+gowa.go.id|Pemerintahan Daerah - Pemkab Gowa
+jeneponto.go.id|Pemerintahan Daerah - Pemkab Jeneponto
+kepulauan-selayar.go.id|Pemerintahan Daerah - Pemkab Kepulauan Selayar
+luwu.go.id|Pemerintahan Daerah - Pemkab Luwu
+luwu-timur.go.id|Pemerintahan Daerah - Pemkab Luwu Timur
+luwu-utara.go.id|Pemerintahan Daerah - Pemkab Luwu Utara
+maros.go.id|Pemerintahan Daerah - Pemkab Maros
+pangkep.go.id|Pemerintahan Daerah - Pemkab Pangkajene dan Kepulauan
+pinrang.go.id|Pemerintahan Daerah - Pemkab Pinrang
+sidrap.go.id|Pemerintahan Daerah - Pemkab Sidenreng Rappang
+sinjai.go.id|Pemerintahan Daerah - Pemkab Sinjai
+soppeng.go.id|Pemerintahan Daerah - Pemkab Soppeng
+takalar.go.id|Pemerintahan Daerah - Pemkab Takalar
+tana-toraja.go.id|Pemerintahan Daerah - Pemkab Tana Toraja
+toraja-utara.go.id|Pemerintahan Daerah - Pemkab Toraja Utara
+wajo.go.id|Pemerintahan Daerah - Pemkab Wajo
+kendari.go.id|Pemerintahan Daerah - Pemkot Kendari
+bau-bau.go.id|Pemerintahan Daerah - Pemkot Bau-Bau
+bombana.go.id|Pemerintahan Daerah - Pemkab Bombana
+buton.go.id|Pemerintahan Daerah - Pemkab Buton
+buton-selatan.go.id|Pemerintahan Daerah - Pemkab Buton Selatan
+buton-tengah.go.id|Pemerintahan Daerah - Pemkab Buton Tengah
+buton-utara.go.id|Pemerintahan Daerah - Pemkab Buton Utara
+kolaka.go.id|Pemerintahan Daerah - Pemkab Kolaka
+kolaka-timur.go.id|Pemerintahan Daerah - Pemkab Kolaka Timur
+kolaka-utara.go.id|Pemerintahan Daerah - Pemkab Kolaka Utara
+konawe.go.id|Pemerintahan Daerah - Pemkab Konawe
+konawe-kepulauan.go.id|Pemerintahan Daerah - Pemkab Konawe Kepulauan
+konawe-selatan.go.id|Pemerintahan Daerah - Pemkab Konawe Selatan
+konawe-utara.go.id|Pemerintahan Daerah - Pemkab Konawe Utara
+muna.go.id|Pemerintahan Daerah - Pemkab Muna
+muna-barat.go.id|Pemerintahan Daerah - Pemkab Muna Barat
+wakatobi.go.id|Pemerintahan Daerah - Pemkab Wakatobi
+gorontalo.go.id|Pemerintahan Daerah - Pemkot Gorontalo
+boalemo.go.id|Pemerintahan Daerah - Pemkab Boalemo
+bone-bolango.go.id|Pemerintahan Daerah - Pemkab Bone Bolango
+gorontalo-kab.go.id|Pemerintahan Daerah - Pemkab Gorontalo
+gorontalo-utara.go.id|Pemerintahan Daerah - Pemkab Gorontalo Utara
+pohuwato.go.id|Pemerintahan Daerah - Pemkab Pohuwato
+mamuju.go.id|Pemerintahan Daerah - Pemkab Mamuju
+mamuju-tengah.go.id|Pemerintahan Daerah - Pemkab Mamuju Tengah
+majene.go.id|Pemerintahan Daerah - Pemkab Majene
+mamasa.go.id|Pemerintahan Daerah - Pemkab Mamasa
+pasangkayu.go.id|Pemerintahan Daerah - Pemkab Pasangkayu
+polewali-mandar.go.id|Pemerintahan Daerah - Pemkab Polewali Mandar
+ambon.go.id|Pemerintahan Daerah - Pemkot Ambon
+tual.go.id|Pemerintahan Daerah - Pemkot Tual
+buru.go.id|Pemerintahan Daerah - Pemkab Buru
+buru-selatan.go.id|Pemerintahan Daerah - Pemkab Buru Selatan
+kepulauan-aru.go.id|Pemerintahan Daerah - Pemkab Kepulauan Aru
+maluku-tengah.go.id|Pemerintahan Daerah - Pemkab Maluku Tengah
+maluku-tenggara.go.id|Pemerintahan Daerah - Pemkab Maluku Tenggara
+maluku-tenggara-barat.go.id|Pemerintahan Daerah - Pemkab Maluku Tenggara Barat
+maluku-barat-daya.go.id|Pemerintahan Daerah - Pemkab Maluku Barat Daya
+seram-bagian-barat.go.id|Pemerintahan Daerah - Pemkab Seram Bagian Barat
+seram-bagian-timur.go.id|Pemerintahan Daerah - Pemkab Seram Bagian Timur
+ternate.go.id|Pemerintahan Daerah - Pemkot Ternate
+tidore.go.id|Pemerintahan Daerah - Pemkot Tidore Kepulauan
+halmahera-barat.go.id|Pemerintahan Daerah - Pemkab Halmahera Barat
+halmahera-tengah.go.id|Pemerintahan Daerah - Pemkab Halmahera Tengah
+halmahera-timur.go.id|Pemerintahan Daerah - Pemkab Halmahera Timur
+halmahera-selatan.go.id|Pemerintahan Daerah - Pemkab Halmahera Selatan
+halmahera-utara.go.id|Pemerintahan Daerah - Pemkab Halmahera Utara
+kepulauan-sula.go.id|Pemerintahan Daerah - Pemkab Kepulauan Sula
+pulau-morotai.go.id|Pemerintahan Daerah - Pemkab Pulau Morotai
+pulau-taliabu.go.id|Pemerintahan Daerah - Pemkab Pulau Taliabu
+jayapura.go.id|Pemerintahan Daerah - Pemkot Jayapura
+jayapurakab.go.id|Pemerintahan Daerah - Pemkab Jayapura
+keerom.go.id|Pemerintahan Daerah - Pemkab Keerom
+sarmi.go.id|Pemerintahan Daerah - Pemkab Sarmi
+mamberamo-raya.go.id|Pemerintahan Daerah - Pemkab Mamberamo Raya
+supiori.go.id|Pemerintahan Daerah - Pemkab Supiori
+biak-numfor.go.id|Pemerintahan Daerah - Pemkab Biak Numfor
+waropen.go.id|Pemerintahan Daerah - Pemkab Waropen
+yapen.go.id|Pemerintahan Daerah - Pemkab Kepulauan Yapen
+sorong.go.id|Pemerintahan Daerah - Pemkot Sorong
+sorongkab.go.id|Pemerintahan Daerah - Pemkab Sorong
+raja-ampat.go.id|Pemerintahan Daerah - Pemkab Raja Ampat
+tambrauw.go.id|Pemerintahan Daerah - Pemkab Tambrauw
+maybrat.go.id|Pemerintahan Daerah - Pemkab Maybrat
+fakfak.go.id|Pemerintahan Daerah - Pemkab Fakfak
+kaimana.go.id|Pemerintahan Daerah - Pemkab Kaimana
+manokwari.go.id|Pemerintahan Daerah - Pemkab Manokwari
+manokwari-selatan.go.id|Pemerintahan Daerah - Pemkab Manokwari Selatan
+pegunungan-arfak.go.id|Pemerintahan Daerah - Pemkab Pegunungan Arfak
+teluk-bintuni.go.id|Pemerintahan Daerah - Pemkab Teluk Bintuni
+teluk-wondama.go.id|Pemerintahan Daerah - Pemkab Teluk Wondama
+merauke.go.id|Pemerintahan Daerah - Pemkab Merauke
+boven-digoel.go.id|Pemerintahan Daerah - Pemkab Boven Digoel
+mappi.go.id|Pemerintahan Daerah - Pemkab Mappi
+asmat.go.id|Pemerintahan Daerah - Pemkab Asmat
+jayawijaya.go.id|Pemerintahan Daerah - Pemkab Jayawijaya
+lanny-jaya.go.id|Pemerintahan Daerah - Pemkab Lanny Jaya
+mamberamo-tengah.go.id|Pemerintahan Daerah - Pemkab Mamberamo Tengah
+nduga.go.id|Pemerintahan Daerah - Pemkab Nduga
+pegunungan-bintang.go.id|Pemerintahan Daerah - Pemkab Pegunungan Bintang
+tolikara.go.id|Pemerintahan Daerah - Pemkab Tolikara
+yahukimo.go.id|Pemerintahan Daerah - Pemkab Yahukimo
+yalimo.go.id|Pemerintahan Daerah - Pemkab Yalimo
+nabire.go.id|Pemerintahan Daerah - Pemkab Nabire
+paniai.go.id|Pemerintahan Daerah - Pemkab Paniai
+intan-jaya.go.id|Pemerintahan Daerah - Pemkab Intan Jaya
+deiyai.go.id|Pemerintahan Daerah - Pemkab Deiyai
+dogiyai.go.id|Pemerintahan Daerah - Pemkab Dogiyai
+mimika.go.id|Pemerintahan Daerah - Pemkab Mimika
+puncak.go.id|Pemerintahan Daerah - Pemkab Puncak
+puncak-jaya.go.id|Pemerintahan Daerah - Pemkab Puncak Jaya
+unipa.ac.id|Pendidikan - Universitas Papua Manokwari
+unmus.ac.id|Pendidikan - Universitas Musamus Merauke
+unsyiah.ac.id|Pendidikan - Universitas Syiah Kuala Banda Aceh
+unimal.ac.id|Pendidikan - Universitas Malikussaleh Lhokseumawe
+usu.ac.id|Pendidikan - Universitas Sumatera Utara Medan
+unimed.ac.id|Pendidikan - Universitas Negeri Medan
+unand.ac.id|Pendidikan - Universitas Andalas Padang
+unri.ac.id|Pendidikan - Universitas Riau Pekanbaru
+unsri.ac.id|Pendidikan - Universitas Sriwijaya Palembang
+unja.ac.id|Pendidikan - Universitas Jambi
+unila.ac.id|Pendidikan - Universitas Lampung
+unib.ac.id|Pendidikan - Universitas Bengkulu
+uns.ac.id|Pendidikan - Universitas Sebelas Maret Solo
+undip.ac.id|Pendidikan - Universitas Diponegoro Semarang
+unnes.ac.id|Pendidikan - Universitas Negeri Semarang
+uny.ac.id|Pendidikan - Universitas Negeri Yogyakarta
+ugm.ac.id|Pendidikan - Universitas Gadjah Mada Yogyakarta
+ui.ac.id|Pendidikan - Universitas Indonesia Jakarta
+itb.ac.id|Pendidikan - Institut Teknologi Bandung
+ipb.ac.id|Pendidikan - IPB University Bogor
+unpad.ac.id|Pendidikan - Universitas Padjadjaran Bandung
+unair.ac.id|Pendidikan - Universitas Airlangga Surabaya
+its.ac.id|Pendidikan - Institut Teknologi Sepuluh Nopember Surabaya
+unesa.ac.id|Pendidikan - Universitas Negeri Surabaya
+ub.ac.id|Pendidikan - Universitas Brawijaya Malang
+um.ac.id|Pendidikan - Universitas Negeri Malang
+unej.ac.id|Pendidikan - Universitas Jember
+undiksha.ac.id|Pendidikan - Universitas Pendidikan Ganesha Bali
+unud.ac.id|Pendidikan - Universitas Udayana Bali
+unram.ac.id|Pendidikan - Universitas Mataram Lombok
+undana.ac.id|Pendidikan - Universitas Nusa Cendana Kupang
+untan.ac.id|Pendidikan - Universitas Tanjungpura Pontianak
+unmul.ac.id|Pendidikan - Universitas Mulawarman Samarinda
+ulm.ac.id|Pendidikan - Universitas Lambung Mangkurat Banjarmasin
+upr.ac.id|Pendidikan - Universitas Palangka Raya
+untad.ac.id|Pendidikan - Universitas Tadulako Palu
+unhalu.ac.id|Pendidikan - Universitas Halu Oleo Kendari
+ung.ac.id|Pendidikan - Universitas Negeri Gorontalo
+unpatti.ac.id|Pendidikan - Universitas Pattimura Ambon
+unkhair.ac.id|Pendidikan - Universitas Khairun Ternate
+unima.ac.id|Pendidikan - Universitas Negeri Manado
+unsrat.ac.id|Pendidikan - Universitas Sam Ratulangi Manado
+telkomuniversity.ac.id|Pendidikan - Telkom University
+binus.ac.id|Pendidikan - BINUS University
+sman1jayapura.sch.id|Pendidikan - SMAN 1 Jayapura
+sman1merauke.sch.id|Pendidikan - SMAN 1 Merauke
+smkn1makassar.sch.id|Pendidikan - SMKN 1 Makassar
+sman1bandung.sch.id|Pendidikan - SMAN 1 Bandung
+sman1surabaya.sch.id|Pendidikan - SMAN 1 Surabaya
+sman1medan.sch.id|Pendidikan - SMAN 1 Medan
+sman1denpasar.sch.id|Pendidikan - SMAN 1 Denpasar
+sman1kupang.sch.id|Pendidikan - SMAN 1 Kupang
+sman1ambon.sch.id|Pendidikan - SMAN 1 Ambon
+sman1ternate.sch.id|Pendidikan - SMAN 1 Ternate
+sman1manado.sch.id|Pendidikan - SMAN 1 Manado
+sman1palu.sch.id|Pendidikan - SMAN 1 Palu
+sman1kendari.sch.id|Pendidikan - SMAN 1 Kendari
+sman1gorontalo.sch.id|Pendidikan - SMAN 1 Gorontalo
+sman1mamuju.sch.id|Pendidikan - SMAN 1 Mamuju
+sman1pontianak.sch.id|Pendidikan - SMAN 1 Pontianak
+sman1palangkaraya.sch.id|Pendidikan - SMAN 1 Palangka Raya
+sman1banjarmasin.sch.id|Pendidikan - SMAN 1 Banjarmasin
+sman1samarinda.sch.id|Pendidikan - SMAN 1 Samarinda
+sman1tanjungpinang.sch.id|Pendidikan - SMAN 1 Tanjung Pinang
+sman1pangkalpinang.sch.id|Pendidikan - SMAN 1 Pangkal Pinang
+sman1bengkulu.sch.id|Pendidikan - SMAN 1 Bengkulu
+sman1jambi.sch.id|Pendidikan - SMAN 1 Jambi
+sman1pekanbaru.sch.id|Pendidikan - SMAN 1 Pekanbaru
+sman1palembang.sch.id|Pendidikan - SMAN 1 Palembang
+sman1bandarlampung.sch.id|Pendidikan - SMAN 1 Bandar Lampung
+sman1serang.sch.id|Pendidikan - SMAN 1 Serang
+sman1semarang.sch.id|Pendidikan - SMAN 1 Semarang
+sman1yogyakarta.sch.id|Pendidikan - SMAN 1 Yogyakarta
+sman1mataram.sch.id|Pendidikan - SMAN 1 Mataram
+rsuppersahabatan.co.id|Kesehatan - RSUP Persahabatan Jakarta
+rscm.co.id|Kesehatan - RSCM Jakarta
+rsudjayapura.go.id|Kesehatan - RSUD Jayapura
+rsudmerauke.go.id|Kesehatan - RSUD Merauke
+rsudmakassar.go.id|Kesehatan - RSUD Makassar
+rsudambon.go.id|Kesehatan - RSUD Ambon
+rsudmanokwari.go.id|Kesehatan - RSUD Manokwari
+rsudmataram.go.id|Kesehatan - RSUD Mataram
+rsudkupang.go.id|Kesehatan - RSUD Kupang
+rsuddenpasar.go.id|Kesehatan - RSUD Denpasar
+rsudpalangkaraya.go.id|Kesehatan - RSUD Palangka Raya
+rsudpontianak.go.id|Kesehatan - RSUD Pontianak
+rsudbanjarmasin.go.id|Kesehatan - RSUD Banjarmasin
+rsudsamarinda.go.id|Kesehatan - RSUD Samarinda
+rsudmanado.go.id|Kesehatan - RSUD Manado
+rsudgorontalo.go.id|Kesehatan - RSUD Gorontalo
+rsudkendari.go.id|Kesehatan - RSUD Kendari
+rsudpalu.go.id|Kesehatan - RSUD Palu
+rsudternate.go.id|Kesehatan - RSUD Ternate
+rsudbandaaceh.go.id|Kesehatan - RSUD Banda Aceh
+rsudmedan.go.id|Kesehatan - RSUD Medan
+rsudpadang.go.id|Kesehatan - RSUD Padang
+rsudpekanbaru.go.id|Kesehatan - RSUD Pekanbaru
+rsudpalembang.go.id|Kesehatan - RSUD Palembang
+rsudjambi.go.id|Kesehatan - RSUD Jambi
+rsudbengkulu.go.id|Kesehatan - RSUD Bengkulu
+rsudbandarlampung.go.id|Kesehatan - RSUD Bandar Lampung
+rsudserang.go.id|Kesehatan - RSUD Serang
+rsudbandung.go.id|Kesehatan - RSUD Bandung
+rsudsemarang.go.id|Kesehatan - RSUD Semarang
+rsudyogyakarta.go.id|Kesehatan - RSUD Yogyakarta
+rsudsurabaya.go.id|Kesehatan - RSUD Surabaya
+kimiafarma.co.id|Kesehatan - Kimia Farma
+kalbe.co.id|Kesehatan - Kalbe Farma
+biofarma.co.id|Kesehatan - Bio Farma
+pertamina.com|Energi - Pertamina
+pln.co.id|Energi - PLN
+telkom.co.id|Telekomunikasi - Telkom Indonesia
+telkomsel.com|Telekomunikasi - Telkomsel
+indosat.com|Telekomunikasi - Indosat
+xl.co.id|Telekomunikasi - XL Axiata
+smartfren.com|Telekomunikasi - Smartfren
+tri.co.id|Telekomunikasi - Tri Indonesia
+garuda-indonesia.com|Transportasi - Garuda Indonesia
+lionair.co.id|Transportasi - Lion Air
+batikair.com|Transportasi - Batik Air
+citilink.co.id|Transportasi - Citilink
+kai.id|Transportasi - KAI
+pelni.co.id|Transportasi - Pelni
+asdp.id|Transportasi - ASDP Indonesia Ferry
+jasamarga.com|Transportasi - Jasa Marga
+angkasapura1.co.id|Transportasi - Angkasa Pura 1
+angkasapura2.co.id|Transportasi - Angkasa Pura 2
+pelindo.co.id|Transportasi - Pelindo
+posindonesia.co.id|Logistik - Pos Indonesia
+bulog.co.id|Pangan - Bulog
+antam.com|Pertambangan - Antam
+krakatausteel.com|Industri - Krakatau Steel
+pgn.co.id|Energi - PGN
+pupuk-indonesia.com|Pertanian - Pupuk Indonesia
+perhutani.co.id|Kehutanan - Perhutani
+ptpn.co.id|Pertanian - PTPN
+astra.co.id|Industri - Astra International
+sinarmas.com|Industri - Sinar Mas
+indofood.com|Pangan - Indofood
+unilever.co.id|Industri - Unilever Indonesia
+gudanggaram.com|Industri - Gudang Garam
+djarum.com|Industri - Djarum
+sampoerna.com|Industri - Sampoerna
+bri.co.id|Keuangan - Bank BRI
+bca.co.id|Keuangan - Bank BCA
+mandiri.co.id|Keuangan - Bank Mandiri
+bni.co.id|Keuangan - Bank BNI
+btn.co.id|Keuangan - Bank BTN
+bsi.co.id|Keuangan - Bank Syariah Indonesia
+cimbniaga.co.id|Keuangan - Bank CIMB Niaga
+danamon.co.id|Keuangan - Bank Danamon
+permatabank.com|Keuangan - Bank Permata
+panin.co.id|Keuangan - Bank Panin
+maybank.co.id|Keuangan - Maybank Indonesia
+ocbc.co.id|Keuangan - Bank OCBC NISP
+bjb.co.id|Keuangan - Bank BJB
+bankjatim.co.id|Keuangan - Bank Jatim
+bankjateng.co.id|Keuangan - Bank Jateng
+bankdki.co.id|Keuangan - Bank DKI
+banksulselbar.co.id|Keuangan - Bank Sulselbar
+bankpapua.com|Keuangan - Bank Papua
+bankmaluku.co.id|Keuangan - Bank Maluku Malut
+bankkalbar.co.id|Keuangan - Bank Kalbar
+bankkaltimtara.co.id|Keuangan - Bank Kaltimtara
+banklampung.co.id|Keuangan - Bank Lampung
+bankbengkulu.co.id|Keuangan - Bank Bengkulu
+banknagari.co.id|Keuangan - Bank Nagari
+bankriau.co.id|Keuangan - Bank Riau Kepri
+bankaceh.co.id|Keuangan - Bank Aceh Syariah
+bankntt.co.id|Keuangan - Bank NTT
+bankntbsyariah.co.id|Keuangan - Bank NTB Syariah
+bankbali.co.id|Keuangan - Bank BPD Bali
+banksulteng.co.id|Keuangan - Bank Sulteng
+banksulutgo.co.id|Keuangan - Bank SulutGo
+bankgorontalo.co.id|Keuangan - Bank Gorontalo
+ojk.go.id|Keuangan - OJK
+bi.go.id|Keuangan - Bank Indonesia
+dana.id|Keuangan - DANA
+ovo.id|Keuangan - OVO
+gopay.co.id|Keuangan - GoPay
+shopeepay.co.id|Keuangan - ShopeePay
+shopee.co.id|E-Commerce - Shopee
+tokopedia.com|E-Commerce - Tokopedia
+bukalapak.com|E-Commerce - Bukalapak
+lazada.co.id|E-Commerce - Lazada Indonesia
+blibli.com|E-Commerce - Blibli
+gojek.com|Transportasi - Gojek
+grab.com|Transportasi - Grab Indonesia
+traveloka.com|Pariwisata - Traveloka
+tiket.com|Pariwisata - Tiket.com
+tvri.go.id|Media - TVRI
+rri.co.id|Media - RRI
+kompas.com|Media - Kompas
+detik.com|Media - Detik
+tribunnews.com|Media - Tribunnews
+metrotvnews.com|Media - Metro TV
+tvonenews.com|Media - TV One
+liputan6.com|Media - Liputan6
+antaranews.com|Media - Antara
+cnnindonesia.com|Media - CNN Indonesia
+cnbcindonesia.com|Media - CNBC Indonesia
+tempo.co|Media - Tempo
+republika.co.id|Media - Republika
+mui.or.id|Agama - MUI
+nu.or.id|Agama - Nahdlatul Ulama
+muhammadiyah.or.id|Agama - Muhammadiyah
+pgi.or.id|Agama - PGI
+kwi.or.id|Agama - KWI
+phdi.or.id|Agama - PHDI
+walubi.or.id|Agama - Walubi
+matakin.or.id|Agama - Matakin
+masjidistiqlal.or.id|Agama - Masjid Istiqlal Jakarta
+pssi.org|Olahraga - PSSI
+koni.or.id|Olahraga - KONI
+pbsi.id|Olahraga - PBSI
+pbvsi.or.id|Olahraga - PBVSI
+perbasi.or.id|Olahraga - Perbasi
