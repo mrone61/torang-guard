@@ -54,7 +54,7 @@ GLOBAL_BRANDS = {
     "gmail.com": "Gmail",
     "yahoo.com": "Yahoo",
     "amazon.com": "Amazon",
-    "netflix.com": "Netflix",
+    "netflix.com": "Netflix", 
 }
 
 
